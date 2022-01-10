@@ -1,5 +1,7 @@
 package org.project.FastFood.Request;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 public class UserRequest {
@@ -9,6 +11,8 @@ public String lastname;
 public String username;
 public String password;
 public String phone;
+@NotNull(message="Ce champ ne doit etre null !")
+@Email(message="ce champ doit respecter le format email !")
 public String email;
 public String image;
 

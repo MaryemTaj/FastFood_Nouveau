@@ -33,7 +33,10 @@ public class RecipeController {
 	RecipeService recipeService;
 	@Autowired
 	Utils util;
-	//api get recipe by categorie
+	
+	
+/*****************************************api get recipe by categorie*********************************/
+	
 	@GetMapping("/categorie/{id_cat}")
 	public ResponseEntity<List<RecipeResponse>> getRecipesByCategorie(
 			@RequestParam(value="page", defaultValue = "1") int page,
@@ -59,6 +62,9 @@ public class RecipeController {
 		
 		
 	}
+	
+/*****************************************api ajouter categorie***********************************/
+	
 	@PostMapping(path="/add",
 			consumes={MediaType.APPLICATION_JSON_VALUE}, 
 		    produces={MediaType.APPLICATION_JSON_VALUE}
@@ -74,6 +80,11 @@ public class RecipeController {
 		
 		return new ResponseEntity<RecipeResponse>(recipeResponse, HttpStatus.CREATED);
 	}
+	
+
+/*****************************************api get recipe by id user***********************************/
+	
+	
 	@GetMapping("/user/{id_user}")
 	public ResponseEntity<List<RecipeResponse>> getRecipesByUser(
 			@RequestParam(value="page", defaultValue = "1") int page,

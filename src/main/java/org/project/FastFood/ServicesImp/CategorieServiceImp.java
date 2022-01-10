@@ -5,12 +5,10 @@ import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.project.FastFood.Entity.CategorieEntity;
-import org.project.FastFood.Entity.UserEntity;
 import org.project.FastFood.Repository.CategorieRepository;
 import org.project.FastFood.Services.CategorieService;
 import org.project.FastFood.Util.Utils;
 import org.project.FastFood.dto.CategorieDto;
-import org.project.FastFood.dto.UserDto;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

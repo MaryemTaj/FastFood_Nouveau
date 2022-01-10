@@ -2,29 +2,28 @@ package org.project.FastFood.ServicesImp;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 
 import org.modelmapper.ModelMapper;
 import org.project.FastFood.Entity.CategorieEntity;
 import org.project.FastFood.Entity.RecipeEntity;
-import org.project.FastFood.Entity.UserEntity;
+
 import org.project.FastFood.Repository.CategorieRepository;
 import org.project.FastFood.Repository.RecipeRepository;
 import org.project.FastFood.Repository.UsersRepository;
-import org.project.FastFood.Request.RecipeRequest;
+
 import org.project.FastFood.Services.RecipeService;
 import org.project.FastFood.Util.Utils;
 import org.project.FastFood.dto.CategorieDto;
 import org.project.FastFood.dto.RecipeDto;
-import org.project.FastFood.dto.UserDto;
-import org.springframework.beans.BeanUtils;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
+
 @Service
 public class RecipeServiceImp implements RecipeService {
 	@Autowired
@@ -36,8 +35,9 @@ public class RecipeServiceImp implements RecipeService {
 	@Autowired
 	Utils util;
 	
-    @Override
 	
+//methode get recipe by id	
+    @Override
 	public List<RecipeDto> getRecipesByCategorie(int page, int limit, String search, int status,long id_cat ){
 					
 			if(page > 0) page = page - 1;
@@ -65,6 +65,7 @@ public class RecipeServiceImp implements RecipeService {
 			return recipeDto;
 		}
 
+//ajouter recipe    
 	@Override
 	public RecipeDto PostRecipe(RecipeDto recipe) {
 		
@@ -83,8 +84,9 @@ public class RecipeServiceImp implements RecipeService {
 		
 	}
 	
-	
-	public List<RecipeDto> getRecipeByUser(int page, int limit, String search, int status, String user_id) {
+//get recipe of user	
+        @Override	
+        public List<RecipeDto> getRecipeByUser(int page, int limit, String search, int status, String user_id) {
 		if(page > 0) page = page - 1;
 		
 		List<RecipeDto> recipeDto = new ArrayList<>();
