@@ -17,12 +17,14 @@ public class ReactionEntity implements Serializable{
 	 */
 	private static final long serialVersionUID = -6216005724729637909L;
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY) 
-	public long id;
-	public String emoji;
+	private long id;
+	private String emoji;
 	@ManyToOne @JoinColumn(name="id_user")
-	public UserEntity user;
+	private UserEntity user;
 	@ManyToOne @JoinColumn(name="id_recipe")
-	public RecipeEntity recipe;
+	private RecipeEntity recipe;
+	
+	
 	public long getId() {
 		return id;
 	}

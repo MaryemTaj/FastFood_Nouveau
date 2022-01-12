@@ -18,9 +18,11 @@ public interface RecipeService {
 
 	//RecipeDto PostRecipe(RecipeDto recipe);
 
-	RecipeDto PostRecipe(RecipeDto recipe);
+	
 	 
 	List<RecipeDto> getRecipeByUser(int page, int limit, String search, int status, String user_id);
+
+	RecipeDto PostRecipe(RecipeDto recipe, String email);
 
 	//RecipeDto updateRecipe(long id_recipe, RecipeDto recipeDto);
 	

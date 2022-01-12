@@ -19,18 +19,18 @@ public class CommentsEntity implements Serializable {
 	 */
 	private static final long serialVersionUID = 8989443625010538348L;
 @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-public long id;
-public String text;
+private long id;
+private String text;
 @Temporal(TemporalType.TIMESTAMP)
-public Date date_comment;
+private Date date_comment;
 
 @ManyToOne
 @JoinColumn(name="id_recipe")
-public RecipeEntity recipe;
+private RecipeEntity recipe;
 
 @ManyToOne
 @JoinColumn(name="id_user")
-public UserEntity user;
+private UserEntity user;
 
 
 public long getId() {

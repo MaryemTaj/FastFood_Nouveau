@@ -5,26 +5,26 @@ import java.util.List;
 
 
 public class UserDto {
-public long id;
-public String userId;
-public String firstname;
-public String lastname;
-public String username;
-public String password;
-public String cryptedPassword;
-public String phone;
-public String email;
-public String role;
-public Date date_created;
-public byte[] image;
+private long id;
+private String userId;
+private String firstname;
+private String lastname;
+private String username;
+private String password;
+private String cryptedPassword;
+private String phone;
+private String email;
+private String role;
+private Date date_created;
+private byte[] image;
 
-public List<RecipeDto> recipes ;
+private List<RecipeDto> recipes ;
 
-public List<CommentsDto> comments;
+private List<CommentsDto> comments;
 
-public List<FavoriteDto> favorites;
+private List<FavoriteDto> favorites;
 
-public List<ReactionDto> reactions;
+private List<ReactionDto> reactions;
 
 
 

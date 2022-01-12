@@ -3,11 +3,11 @@ package org.project.FastFood.Request;
 public class IngredientRequest {
 
 	
-	public String name;
-	public String description;
-	public String image;
-	public int quantity;
-	public String measure_type;
+	private String name;
+	private String description;
+	private String image;
+	private int quantity;
+	private String measure_type;
 	
 	public IngredientRequest() {
 		super();

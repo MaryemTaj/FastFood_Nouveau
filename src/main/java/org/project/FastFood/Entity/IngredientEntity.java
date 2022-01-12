@@ -18,16 +18,16 @@ public class IngredientEntity implements Serializable{
 	 */
 	private static final long serialVersionUID = 8235157328120464229L;
 @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	public int id;
-	public String name;
-	public String description;
+	private int id;
+	private String name;
+	private String description;
 	@Lob
-	public byte[] image;
-	public int quantity;
-	public String measure_type;
+	private byte[] image;
+	private int quantity;
+	private String measure_type;
 	
 	@ManyToOne @JoinColumn(name="id_recipe")
-	public RecipeEntity recipe;
+	private RecipeEntity recipe;
 	
 	public IngredientEntity() {
 		super();

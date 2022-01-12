@@ -27,53 +27,53 @@ public class RecipeEntity implements Serializable {
 	 */
 	private static final long serialVersionUID = 3286565895951101107L;
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	public long id;
+	private long id;
 	@Lob
-	public byte[] image;
+	private byte[] image;
 	@Lob
-	public Blob video;
+	private Blob video;
 	
-	public String name;
-	public String pays;
-	public String tags;
-	public int servings_numbers;
+	private String name;
+	private String pays;
+	private String tags;
+	private int servings_numbers;
 	@Temporal(TemporalType.TIMESTAMP)
 	@CreationTimestamp
-	public Date submit_date;
+	private Date submit_date;
 	@Temporal(TemporalType.TIMESTAMP)
 	@CreationTimestamp
-	public Date update_date;
-	public String description;
-	public int totals_views;
-	public boolean featured;
-	public String difficulty;
+	private Date update_date;
+	private String description;
+	private int totals_views;
+	private boolean featured;
+	private String difficulty;
 	
-	public String prep_time;
+	private String prep_time;
 	
-	public String cook_time;
+	private String cook_time;
 	
 	 @ManyToOne
 	 @JoinColumn( name="id_user")
-	public UserEntity user;
+	 private UserEntity user;
 	
 	@OneToMany(mappedBy="recipe")
-	public List<StepsEntity> steps_recipes ;
+	private List<StepsEntity> steps_recipes ;
 	
 	@ManyToOne
 	@JoinColumn(name="id_cat")
-	public CategorieEntity categorie;
+	private CategorieEntity categorie;
 	
 	@OneToMany(mappedBy="recipe")
-	public  List<IngredientEntity> ingredients;
+	private  List<IngredientEntity> ingredients;
 	
 	@OneToMany(mappedBy="recipe")
-	public List<FavoriteEntity> favorites ;
+	private List<FavoriteEntity> favorites ;
 	
 	@OneToMany(mappedBy="recipe")
-	public List<ReactionEntity> reactions ;
+	private List<ReactionEntity> reactions ;
 	
 	@OneToMany(mappedBy="recipe")
-	public List<CommentsEntity> comments;
+	private List<CommentsEntity> comments;
 	
 	public RecipeEntity() {
 		super();

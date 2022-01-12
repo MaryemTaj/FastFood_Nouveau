@@ -5,11 +5,11 @@ import java.util.Date;
 
 public class CommentsRequest {
 
-public String text;
-public Date date_comment;
-public RecipeRequest recipe;
+	private String text;
+	private Date date_comment;
+	private RecipeRequest recipe;
 
-public UserRequest user;
+	private UserRequest user;
 
 public CommentsRequest() {
 	super();

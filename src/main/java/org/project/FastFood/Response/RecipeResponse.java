@@ -8,32 +8,32 @@ import java.util.List;
 
 public class RecipeResponse {
 
-	public String image;
-	public String video;
-	public String name;
-	public Date submit_date;
-	public String servings_numbers;
-	public String description;
-	public String totals_views;
-	public boolean featured;
-	public String difficulty;
-	public String prep_time;
-	public String cook_time;
-    public UserResponse user;
+	private String image;
+	private String video;
+	private String name;
+	private Date submit_date;
+	private String servings_numbers;
+	private String description;
+	private String totals_views;
+	private boolean featured;
+	private String difficulty;
+	private String prep_time;
+	private String cook_time;
+	private UserResponse user;
 	
 	
 	
-	public List<StepsResponse> steps_recipes;
+	private List<StepsResponse> steps_recipes;
 	
-	public CategorieResponse categorie;
+	private CategorieResponse categorie;
 	
-	public  List<IngredientResponse> ingredients;
+	private  List<IngredientResponse> ingredients;
 	
-	public List<FavoriteResponse> favorites ;
+	private List<FavoriteResponse> favorites ;
 	
-	public List<ReactionResponse> reactions ;
+	private List<ReactionResponse> reactions ;
 	
-	public List<CommentsResponse> comments;
+	private List<CommentsResponse> comments;
 	public String getImage() {
 		return image;
 	}

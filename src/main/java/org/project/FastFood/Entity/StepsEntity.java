@@ -17,14 +17,14 @@ public class StepsEntity implements Serializable{
 	private static final long serialVersionUID = -5811217083229025824L;
 
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	public long id;
+	private long id;
 	
-	public String description;
-	public byte[] image;
+	private String description;
+	private byte[] image;
 	
 
-@ManyToOne 
-public RecipeEntity recipe;
+    @ManyToOne 
+    private RecipeEntity recipe;
 
 
 	public StepsEntity() {

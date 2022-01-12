@@ -18,13 +18,13 @@ public class CategorieEntity implements Serializable {
 	 */
 	private static final long serialVersionUID = 6546842318111390210L;
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	public long id;
-	public String name;
-	public String description;
-	public String image;
-	public String catId;
+	private long id;
+	private String name;
+	private String description;
+	private String image;
+	private String catId;
 	 @OneToMany(mappedBy="categorie")
-	 public List<RecipeEntity> resipes ;
+	 private List<RecipeEntity> resipes ;
 	 
 
 	public List<RecipeEntity> getResipes() {

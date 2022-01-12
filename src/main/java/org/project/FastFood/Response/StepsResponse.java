@@ -1,9 +1,9 @@
 package org.project.FastFood.Response;
 
 public class StepsResponse {
-    public int id;
-	public String description;
-	public byte[] image;
+	private int id;
+	private String description;
+	private byte[] image;
 	
 
 }

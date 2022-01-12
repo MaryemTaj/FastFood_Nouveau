@@ -2,8 +2,8 @@ package org.project.FastFood.dto;
 
 public class StepsDto {
 	
-    public int id;
-	public String description;
-	public byte[] image;
+    private int id;
+	private String description;
+	private byte[] image;
 	
 }

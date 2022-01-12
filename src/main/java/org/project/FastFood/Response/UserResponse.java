@@ -11,21 +11,21 @@ import org.project.FastFood.dto.ReactionDto;
 
 public class UserResponse {
 
-public String firstname;
-public String lastname;
-public String phone;
-public String email;
-public String image;
+	private String firstname;
+	private String lastname;
+	private String phone;
+	private String email;
+	private String image;
 
 
-public  List<RecipeResponse> recipe;
+	private  List<RecipeResponse> recipe;
 
 
-public List<CommentsResponse> comments;
+	private List<CommentsResponse> comments;
 
-public List<FavoriteResponse> favorites;
+	private List<FavoriteResponse> favorites;
 
-public List<ReactionResponse> reactions;
+	private List<ReactionResponse> reactions;
 
 public UserResponse() {
 	super();

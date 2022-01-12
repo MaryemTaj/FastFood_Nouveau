@@ -5,12 +5,12 @@ import java.util.List;
 
 public class CategorieRequest {
 	
-	public String name;
-	public String description;
-	public String image;
-	public String catId;
-	public List<RecipeRequest> resipes ;
-	public CategorieRequest() {
+	private String name;
+	private String description;
+	private String image;
+	private String catId;
+	private List<RecipeRequest> resipes ;
+	private CategorieRequest() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

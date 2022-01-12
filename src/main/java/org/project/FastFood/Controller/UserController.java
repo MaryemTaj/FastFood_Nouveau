@@ -38,9 +38,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class UserController {
 	@Autowired
 	UserService userService;
-	  @Autowired
-	    private AuthenticationManager authenticationManager;
-	
+
 /********************************api get all users ***************************************/
 	  
 	@GetMapping(produces={MediaType.APPLICATION_JSON_VALUE})
@@ -86,7 +84,8 @@ public class UserController {
 		return new ResponseEntity<UserResponse>(userResponse, HttpStatus.OK);
 		
 	}
-
+	
+	
 /********************************api update user*******************************************/
 	
 	@PutMapping("/{id_user}")
@@ -114,7 +113,7 @@ public class UserController {
 	
 /********************************api login user*******************************************/
 	
-	@PostMapping("/signin")
+	/*@PostMapping("/signin")
     public ResponseEntity<String> loginUser(@RequestBody UserLoginRequest userloginRequest){
 		
 		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
@@ -124,7 +123,7 @@ public class UserController {
     	
 		
 		
-	}
+	}*/
 	
 	
 }

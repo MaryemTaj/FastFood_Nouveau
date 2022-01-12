@@ -6,23 +6,23 @@ import java.util.List;
 
 public class UserRequest {
 
-public String firstname;
-public String lastname;
-public String username;
-public String password;
-public String phone;
+	private String firstname;
+	private String lastname;
+	private String username;
+	private String password;
+	private String phone;
 @NotNull(message="Ce champ ne doit etre null !")
 @Email(message="ce champ doit respecter le format email !")
-public String email;
-public String image;
+private String email;
+private String image;
 
-public List<RecipeRequest> recipes ;
+private List<RecipeRequest> recipes ;
 
-public List<CommentsRequest> comments;
+private List<CommentsRequest> comments;
 
-public List<FavoriteRequest> favorites;
+private List<FavoriteRequest> favorites;
 
-public List<ReactionRequest> reactions;
+private List<ReactionRequest> reactions;
 
 
 

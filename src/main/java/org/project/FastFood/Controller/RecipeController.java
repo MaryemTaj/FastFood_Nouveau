@@ -2,6 +2,7 @@ package org.project.FastFood.Controller;
 
 
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,17 +64,17 @@ public class RecipeController {
 		
 	}
 	
-/*****************************************api ajouter categorie***********************************/
+/*****************************************api ajouter recipe***********************************/
 	
 	@PostMapping(path="/add",
 			consumes={MediaType.APPLICATION_JSON_VALUE}, 
 		    produces={MediaType.APPLICATION_JSON_VALUE}
 			)
-	public ResponseEntity<RecipeResponse> postRecipe(@RequestBody RecipeRequest recipeR){
+	public ResponseEntity<RecipeResponse> postRecipe(@RequestBody RecipeRequest recipeR ,Principal principal){
 		ModelMapper modelMapper= new ModelMapper();
 		RecipeDto recipeDto = modelMapper.map(recipeR, RecipeDto.class);	
 		
-		RecipeDto createRecipe = recipeService.PostRecipe(recipeDto);
+		RecipeDto createRecipe = recipeService.PostRecipe(recipeDto,principal.getName());
 		
 		RecipeResponse recipeResponse =  modelMapper.map(createRecipe, RecipeResponse.class);
 

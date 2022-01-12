@@ -15,37 +15,37 @@ import org.project.FastFood.Entity.StepsEntity;
 
 
 public class RecipeDto {
-	public long id;
-	public byte[] image;
-	public Blob video;
-	public String name;
-	public String steps;
-	public int servings_numbers;
-	public Date submit_date;
-	public Date update_date;
-	public String description;
-	public String totals_views;
-	public boolean featured;
-	public String difficulty;
-	public String prep_time;
-	public String cook_time;
-	public String pays;
-	public String tags;
+	private long id;
+	private byte[] image;
+	private Blob video;
+	private String name;
+	private String steps;
+	private int servings_numbers;
+	private Date submit_date;
+	private Date update_date;
+	private String description;
+	private String totals_views;
+	private boolean featured;
+	private String difficulty;
+	private String prep_time;
+	private String cook_time;
+	private String pays;
+	private String tags;
 	
-	public UserDto user;
-	public CategorieDto categorie;
+	private UserDto user;
+	private CategorieDto categorie;
 	
-	public List<StepsDto> steps_recipes;
+	private List<StepsDto> steps_recipes;
 	
 	
 	
-	public  List<IngredientDto> ingredients;
+	private  List<IngredientDto> ingredients;
 	
-	public List<FavoriteDto> favorites ;
+	private List<FavoriteDto> favorites ;
 	
-	public List<ReactionDto> reactions ;
+	private List<ReactionDto> reactions ;
 	
-	public List<CommentsDto> comments;
+	private List<CommentsDto> comments;
 	
 	public RecipeDto() {
 		super();

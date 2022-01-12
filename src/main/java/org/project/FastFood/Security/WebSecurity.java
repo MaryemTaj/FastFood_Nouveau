@@ -15,8 +15,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-@Configuration
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+
 @EnableWebSecurity
 public class WebSecurity extends WebSecurityConfigurerAdapter {
 	
@@ -31,11 +30,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 		 
 		 
 		 
-		  @Override
-		    @Bean
-		    public AuthenticationManager authenticationManagerBean() throws Exception {
-		        return super.authenticationManagerBean();
-		    }
+		 
 		  @Override
 			protected void configure(HttpSecurity http) throws Exception {
 				
@@ -44,7 +39,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 				    .cors().and()
 				    .csrf().disable()
 					.authorizeRequests()
-					.antMatchers(HttpMethod.POST, SecurityConstants.SIGN_UP_URL)
+					.antMatchers(SecurityConstants.SIGN_UP_URL)
 					.permitAll()
 					.anyRequest().authenticated()
 					.and()

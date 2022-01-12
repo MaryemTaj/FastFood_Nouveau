@@ -55,12 +55,10 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter{
 	                                            FilterChain chain,
 	                                            Authentication auth) throws IOException, ServletException {
 	        
-	        String userName = ((User) auth.getPrincipal()).getUsername(); 
+	        String userName = ((User) auth.getPrincipal()).getUsername(); 	        
+            UserService userService = (UserService)SpringApplicationContext.getBean("userServiceImp");
 	        
-            UserService userService = (UserService)SpringApplicationContext.getBean("userSeviceImpl");
-	        
-	        UserDto userDto = userService.getUser(userName);
-	        
+	        UserDto userDto = userService.getUser(userName);	        
 	        String token = Jwts.builder()
 	                .setSubject(userName)
 	                .claim("id", userDto.getUserId())

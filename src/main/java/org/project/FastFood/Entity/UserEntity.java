@@ -25,31 +25,31 @@ public class UserEntity implements Serializable {
 	 */
 	private static final long serialVersionUID = -5692285355909500735L;
 @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-public long id;
-public String userId; 
-public String firstname;
-public String lastname;
-public String username;
-public String cryptedPassword;
-public String phone;
-public String email;
-public String role;
+private long id;
+private String userId; 
+private String firstname;
+private String lastname;
+private String username;
+private String cryptedPassword;
+private String phone;
+private String email;
+private String role;
 @Temporal(TemporalType.TIMESTAMP)
 @CreationTimestamp
-public Date date_created;
+private Date date_created;
 @Lob
-public byte[] image;
+private byte[] image;
 @OneToMany(mappedBy="user", fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-public List<RecipeEntity> recipes ;
+private List<RecipeEntity> recipes ;
 
 @OneToMany(mappedBy="user" , fetch = FetchType.LAZY, cascade=CascadeType.ALL)
-public List<CommentsEntity> comments;
+private List<CommentsEntity> comments;
 
 @OneToMany(mappedBy="user" , fetch = FetchType.LAZY, cascade=CascadeType.ALL)
-public List<FavoriteEntity> favorites;
+private List<FavoriteEntity> favorites;
 
 @OneToMany(mappedBy="user"  ,fetch = FetchType.LAZY, cascade=CascadeType.ALL)
-public List<ReactionEntity> reactions;
+private List<ReactionEntity> reactions;
 
 public long getId() {
 	return id;

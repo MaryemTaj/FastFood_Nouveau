@@ -4,9 +4,9 @@ package org.project.FastFood.dto;
 
 public class ReactionDto {
 	
-	public int id;
-	public String emoji;
-	public UserDto user;
+	private int id;
+	private String emoji;
+	private UserDto user;
 
 	
 

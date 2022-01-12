@@ -7,7 +7,7 @@ import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.project.FastFood.Entity.CategorieEntity;
 import org.project.FastFood.Entity.RecipeEntity;
-
+import org.project.FastFood.Entity.UserEntity;
 import org.project.FastFood.Repository.CategorieRepository;
 import org.project.FastFood.Repository.RecipeRepository;
 import org.project.FastFood.Repository.UsersRepository;
@@ -16,7 +16,7 @@ import org.project.FastFood.Services.RecipeService;
 import org.project.FastFood.Util.Utils;
 import org.project.FastFood.dto.CategorieDto;
 import org.project.FastFood.dto.RecipeDto;
-
+import org.project.FastFood.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -67,13 +67,16 @@ public class RecipeServiceImp implements RecipeService {
 
 //ajouter recipe    
 	@Override
-	public RecipeDto PostRecipe(RecipeDto recipe) {
+	public RecipeDto PostRecipe(RecipeDto recipe,String email) {
 		
 		    CategorieEntity categorie = categorieRepository.findByName(recipe.getCategorie().getName());
 		    ModelMapper modelMapper = new ModelMapper();
 		    CategorieDto categorireDto = modelMapper.map(categorie, CategorieDto.class);
+		    
+		    UserEntity currentUser = userRepository.findByEmail(email);			
 			
-		
+			UserDto userDto = modelMapper.map(currentUser, UserDto.class);
+		    recipe.setUser(userDto);
 			recipe.setCategorie(categorireDto);
 			RecipeEntity recipeEntity = modelMapper.map(recipe, RecipeEntity.class); 
 			RecipeEntity newRecipe = recipeRepository.save(recipeEntity);

@@ -8,12 +8,12 @@ import java.util.List;
 
 public class CategorieResponse {
 	
-	public String name;
-	public String description;
-	public String image;
+	private String name;
+	private String description;
+	private String image;
 
 
-	public List<RecipeResponse> resipes ;
+	private List<RecipeResponse> resipes ;
 
 	public CategorieResponse() {
 		super();
