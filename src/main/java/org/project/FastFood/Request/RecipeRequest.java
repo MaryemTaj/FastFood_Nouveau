@@ -4,12 +4,15 @@ package org.project.FastFood.Request;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+
 
 
 public class RecipeRequest {
 	
 	private String image;
 	private String video;
+	@NotNull(message = "Ce champ ne doit etre null !")
 	private String name;
 	
 	private String servings_numbers;
@@ -18,7 +21,9 @@ public class RecipeRequest {
 	private String totals_views;
 	private boolean featured;
 	private String difficulty;
+	@NotNull(message = "Ce champ ne doit etre null !")
 	private String prep_time;
+	@NotNull(message = "Ce champ ne doit etre null !")
 	private String cook_time;
 	
 	private UserRequest user;

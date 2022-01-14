@@ -26,6 +26,7 @@ public class IngredientEntity implements Serializable{
 	private int quantity;
 	private String measure_type;
 	
+	private String ingredientId;
 	@ManyToOne @JoinColumn(name="id_recipe")
 	private RecipeEntity recipe;
 	
@@ -88,6 +89,14 @@ public class IngredientEntity implements Serializable{
 
 	public void setRecipe(RecipeEntity recipe) {
 		this.recipe = recipe;
+	}
+
+	public String getIngredientId() {
+		return ingredientId;
+	}
+
+	public void setIngredientId(String ingredientId) {
+		this.ingredientId = ingredientId;
 	}
 	
 

@@ -26,6 +26,9 @@ public class CategorieServiceImp implements CategorieService{
 /*****************************Ajouter Categorie ***************************/
 	@Override
 	public CategorieDto AddCategorie(CategorieDto categorieDto) {
+		CategorieEntity catChercher = categorieRepository.findByName(categorieDto.getName());
+		
+		if( catChercher != null) throw new RuntimeException("A categorie with this name Already Exists !");
 		ModelMapper modelMapper = new ModelMapper();
 		CategorieEntity catEntity = modelMapper.map(categorieDto,CategorieEntity.class);
 		catEntity.setCatId(util.generateStringId(32));
@@ -39,7 +42,7 @@ public class CategorieServiceImp implements CategorieService{
 /*****************************Update Categorie ****************************/	
 	
 	@Override
-	public CategorieDto updateCategorie(CategorieDto categorieDto,String id_cat) {
+	public CategorieDto updateCategorie(String id_cat,CategorieDto categorieDto) {
 		CategorieEntity catEntity = categorieRepository.findByCatId(id_cat);
 		catEntity.setDescription(categorieDto.getDescription());
 		catEntity.setName(categorieDto.getName());
@@ -88,7 +91,20 @@ public List<CategorieDto> getAllCategorie(int page, int limit, String search, in
 		}		
 		return categoriesDto;
 	}
+
 	
+	//methode get user by id	
+@Override
+public CategorieDto getCatById(String catId) {
+
+    CategorieEntity categorieEntity = categorieRepository.findByCatId(catId);
+    if(categorieEntity == null) throw new UsernameNotFoundException(catId); 
+    CategorieDto categorieDto = new CategorieDto();
+    BeanUtils.copyProperties(categorieEntity, categorieDto);
+    return categorieDto;
+}	
+
+
 }
 
 

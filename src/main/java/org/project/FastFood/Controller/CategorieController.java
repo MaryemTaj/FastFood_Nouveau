@@ -6,14 +6,11 @@ import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.project.FastFood.Request.CategorieRequest;
 import org.project.FastFood.Response.CategorieResponse;
-
 import org.project.FastFood.Services.CategorieService;
 import org.project.FastFood.dto.CategorieDto;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +21,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+@EnableWebMvc
 @RestController
 @RequestMapping("/categorie")
 public class CategorieController {
@@ -34,7 +33,7 @@ CategorieService categorieService;
 /********************************API AJOUTER CATEGORIE***************************************/
 
 @PostMapping("/add")
-public ResponseEntity<CategorieResponse> addCategorie(@RequestBody CategorieRequest catRequest){
+public ResponseEntity<CategorieResponse> addCategorie(@RequestBody CategorieRequest catRequest)throws Exception{
 	ModelMapper modelmap = new ModelMapper();
 	CategorieDto CatDto = modelmap.map(catRequest, CategorieDto.class);
 	CategorieDto newCat = categorieService.AddCategorie(CatDto);
@@ -49,7 +48,7 @@ public ResponseEntity<CategorieResponse> addCategorie(@RequestBody CategorieRequ
 public ResponseEntity<CategorieResponse> updateCategorie(@RequestBody CategorieRequest catRequest ,@PathVariable String id_cat){
 	CategorieDto categorieDto = new CategorieDto();
 	BeanUtils.copyProperties(catRequest, categorieDto);
-	CategorieDto updateCategorie = categorieService.updateCategorie(categorieDto, id_cat);
+	CategorieDto updateCategorie = categorieService.updateCategorie( id_cat,categorieDto);
     CategorieResponse categorieResponse = new CategorieResponse();	
 	BeanUtils.copyProperties(updateCategorie, categorieResponse);
 	return new ResponseEntity<CategorieResponse>(categorieResponse, HttpStatus.ACCEPTED);	
@@ -65,9 +64,9 @@ public ResponseEntity<Object> deleteCategorie(@PathVariable String id_cat) {
 	
 }
 
-/********************************API AFFICHER LES CATEGORIES***************************************/
+/********************************API AFFICHER LES CATEGORIES**************************************/
 @GetMapping
-public ResponseEntity<List<CategorieResponse>> getAllCategories(@RequestParam(value="page", defaultValue = "") int page,@RequestParam(value="limit", defaultValue = "")  int limit ,@RequestParam(value="search", defaultValue = "") String search,@RequestParam(value="status", defaultValue = "") int status) {
+public ResponseEntity<List<CategorieResponse>> getAllCategories(@RequestParam(value="page", defaultValue = "0") int page,@RequestParam(value="limit", defaultValue = "1")  int limit ,@RequestParam(value="search", defaultValue = "") String search,@RequestParam(value="status", defaultValue = "2") int status) {
 	
 	List<CategorieResponse> categoriesResponse = new ArrayList<>();
 	
@@ -82,6 +81,20 @@ public ResponseEntity<List<CategorieResponse>> getAllCategories(@RequestParam(va
 	}
 	
 	return new ResponseEntity<List<CategorieResponse>>(categoriesResponse, HttpStatus.OK);
+}
+
+/********************************api get categorie by id***************************************/
+
+
+@GetMapping("/{id_cat}")
+public ResponseEntity<CategorieResponse> getCategorieByIdCat(@PathVariable String id_cat){
+
+	CategorieDto categorieDto = categorieService.getCatById(id_cat);
+	CategorieResponse categorieResponse = new CategorieResponse();
+	BeanUtils.copyProperties(categorieDto, categorieResponse);
+	
+	return new ResponseEntity<CategorieResponse>(categorieResponse, HttpStatus.OK);
+	
 }
 
 

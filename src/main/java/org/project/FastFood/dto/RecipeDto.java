@@ -1,6 +1,7 @@
 package org.project.FastFood.dto;
 
 
+import java.io.Serializable;
 import java.sql.Blob;
 import java.util.Date;
 import java.util.List;
@@ -14,7 +15,11 @@ import org.project.FastFood.Entity.ReactionEntity;
 import org.project.FastFood.Entity.StepsEntity;
 
 
-public class RecipeDto {
+public class RecipeDto implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -195580891806545515L;
 	private long id;
 	private byte[] image;
 	private Blob video;
@@ -31,7 +36,7 @@ public class RecipeDto {
 	private String cook_time;
 	private String pays;
 	private String tags;
-	
+	private String recipId;
 	private UserDto user;
 	private CategorieDto categorie;
 	
@@ -240,6 +245,16 @@ public class RecipeDto {
 
 	public void setComments(List<CommentsDto> comments) {
 		this.comments = comments;
+	}
+
+
+	public String getRecipId() {
+		return recipId;
+	}
+
+
+	public void setRecipId(String recipId) {
+		this.recipId = recipId;
 	}
 	
 	

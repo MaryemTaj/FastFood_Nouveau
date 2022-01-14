@@ -1,12 +1,12 @@
 package org.project.FastFood.Entity;
 
-
 import java.io.Serializable;
 import java.sql.Blob;
 
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,19 +20,22 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CreationTimestamp;
-@Entity @Table(name="T_recipe")
+
+@Entity
+@Table(name = "T_recipe")
 public class RecipeEntity implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 3286565895951101107L;
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@Lob
 	private byte[] image;
 	@Lob
 	private Blob video;
-	
+	@Column(nullable = false)
 	private String name;
 	private String pays;
 	private String tags;
@@ -47,34 +50,36 @@ public class RecipeEntity implements Serializable {
 	private int totals_views;
 	private boolean featured;
 	private String difficulty;
-	
+	@Column(nullable = false)
+	private String recipeId;
+	@Column(nullable = false)
 	private String prep_time;
-	
+	@Column(nullable = false)
 	private String cook_time;
-	
-	 @ManyToOne
-	 @JoinColumn( name="id_user")
-	 private UserEntity user;
-	
-	@OneToMany(mappedBy="recipe")
-	private List<StepsEntity> steps_recipes ;
-	
+
 	@ManyToOne
-	@JoinColumn(name="id_cat")
+	@JoinColumn(name = "id_user")
+	private UserEntity user;
+
+	@OneToMany(mappedBy = "recipe")
+	private List<StepsEntity> steps_recipes;
+
+	@ManyToOne
+	@JoinColumn(name = "id_cat")
 	private CategorieEntity categorie;
-	
-	@OneToMany(mappedBy="recipe")
-	private  List<IngredientEntity> ingredients;
-	
-	@OneToMany(mappedBy="recipe")
-	private List<FavoriteEntity> favorites ;
-	
-	@OneToMany(mappedBy="recipe")
-	private List<ReactionEntity> reactions ;
-	
-	@OneToMany(mappedBy="recipe")
+
+	@OneToMany(mappedBy = "recipe")
+	private List<IngredientEntity> ingredients;
+
+	@OneToMany(mappedBy = "recipe")
+	private List<FavoriteEntity> favorites;
+
+	@OneToMany(mappedBy = "recipe")
+	private List<ReactionEntity> reactions;
+
+	@OneToMany(mappedBy = "recipe")
 	private List<CommentsEntity> comments;
-	
+
 	public RecipeEntity() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -184,8 +189,6 @@ public class RecipeEntity implements Serializable {
 		this.difficulty = difficulty;
 	}
 
-	
-
 	public String getPrep_time() {
 		return prep_time;
 	}
@@ -257,8 +260,13 @@ public class RecipeEntity implements Serializable {
 	public void setComments(List<CommentsEntity> comments) {
 		this.comments = comments;
 	}
-	
-	
-	
+
+	public String getRecipeId() {
+		return recipeId;
+	}
+
+	public void setRecipeId(String recipeId) {
+		this.recipeId = recipeId;
+	}
 
 }

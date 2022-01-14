@@ -19,9 +19,7 @@ public class RecipeResponse {
 	private String difficulty;
 	private String prep_time;
 	private String cook_time;
-	private UserResponse user;
-	
-	
+	private UserResponse user;	
 	
 	private List<StepsResponse> steps_recipes;
 	
@@ -132,14 +130,7 @@ public class RecipeResponse {
 		this.user = user;
 	}
 
-	public List<StepsResponse> getSteps_recipes() {
-		return steps_recipes;
-	}
-
-	public void setSteps_recipes(List<StepsResponse> steps_recipes) {
-		this.steps_recipes = steps_recipes;
-	}
-
+	
 	public CategorieResponse getCategorie() {
 		return categorie;
 	}

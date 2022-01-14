@@ -15,10 +15,6 @@ public class CategorieResponse {
 
 	private List<RecipeResponse> resipes ;
 
-	public CategorieResponse() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 	
 	public String getName() {
 		return name;

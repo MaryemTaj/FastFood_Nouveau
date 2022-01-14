@@ -2,13 +2,10 @@ package org.project.FastFood.ServicesImp;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
 import org.project.FastFood.Repository.UsersRepository;
 import org.project.FastFood.Services.UserService;
 import org.project.FastFood.Util.Utils;
 import org.project.FastFood.dto.UserDto;
-
 import org.modelmapper.ModelMapper;
 import org.project.FastFood.Entity.UserEntity;
 import org.springframework.beans.BeanUtils;
@@ -38,7 +35,10 @@ public class UserServiceImp implements UserService {
 // methode create new users(registration users)
 	    @Override
         public UserDto createUser(UserDto user) {
-	 
+	    	
+	    	UserEntity UserChercher = userRepository.findByEmail(user.getEmail());
+			
+		if( UserChercher != null) throw new RuntimeException("User Already Exists !");
 	    ModelMapper modelMapper = new ModelMapper();
 		UserEntity userEntity = modelMapper.map(user, UserEntity.class); 
 		userEntity.setCryptedPassword(bCryptPasswordEncoder.encode(user.getPassword()));
@@ -86,33 +86,41 @@ public class UserServiceImp implements UserService {
 	
 // methode get user by id	
 	@Override
-	public UserDto getUserbyId(String email){
+	public UserDto getUserbyId(String userId){
 		
-	    UserEntity userEntity = userRepository.findByEmail(email);
-	    if(userEntity == null) throw new UsernameNotFoundException(email); 
+	    UserEntity userEntity = userRepository.findByUserId(userId);
+	    if(userEntity == null) throw new UsernameNotFoundException(userId); 
 	    UserDto userDto = new UserDto();
 	    BeanUtils.copyProperties(userEntity, userDto);
 	    return userDto;
 	}
 //methode update user	
+
 	@Override
-	public UserDto updateUser(String id_user,UserDto userDto) {
-		
-		UserEntity userEntity = userRepository.findByUserId(id_user);
-		if(userEntity == null) throw new UsernameNotFoundException(id_user); 
+	public UserDto updateUser(String userId, UserDto userDto) {
+
+		UserEntity userEntity = userRepository.findByUserId(userId);
+
+		if (userEntity == null)
+			throw new UsernameNotFoundException(userId);
+
 		userEntity.setFirstname(userDto.getFirstname());
 		userEntity.setLastname(userDto.getLastname());
 		userEntity.setPhone(userDto.getPhone());
 		userEntity.setImage(userDto.getImage());
 		userEntity.setEmail(userDto.getEmail());
 		userEntity.setUsername(userDto.getUsername());
-		UserEntity userUpdated= userRepository.save(userEntity);
-        UserDto user = new UserDto();
+
+		UserEntity userUpdated = userRepository.save(userEntity);
+
+		UserDto user = new UserDto();
+
 		BeanUtils.copyProperties(userUpdated, user);
+
 		return user;
-		
-		
 	}
+
+	
 
 //delete user	
 	@Override
@@ -138,7 +146,7 @@ public class UserServiceImp implements UserService {
 	}
 
 
-//
+//find user by email
 	@Override
 	public UserDto getUser(String email) {
 		

@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,168 +18,145 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CreationTimestamp;
-@Entity @Table(name="T_users")
+
+@Entity
+@Table(name = "T_users")
 public class UserEntity implements Serializable {
 
-/**
-	 * 
-	 */
+	/**
+		 * 
+		 */
 	private static final long serialVersionUID = -5692285355909500735L;
-@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-private long id;
-private String userId; 
-private String firstname;
-private String lastname;
-private String username;
-private String cryptedPassword;
-private String phone;
-private String email;
-private String role;
-@Temporal(TemporalType.TIMESTAMP)
-@CreationTimestamp
-private Date date_created;
-@Lob
-private byte[] image;
-@OneToMany(mappedBy="user", fetch = FetchType.EAGER, cascade=CascadeType.ALL)
-private List<RecipeEntity> recipes ;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
 
-@OneToMany(mappedBy="user" , fetch = FetchType.LAZY, cascade=CascadeType.ALL)
-private List<CommentsEntity> comments;
+	@Column(nullable = false)
+	private String userId;
 
-@OneToMany(mappedBy="user" , fetch = FetchType.LAZY, cascade=CascadeType.ALL)
-private List<FavoriteEntity> favorites;
+	@Column(nullable = false)
+	private String firstname;
 
-@OneToMany(mappedBy="user"  ,fetch = FetchType.LAZY, cascade=CascadeType.ALL)
-private List<ReactionEntity> reactions;
+	@Column(nullable = false)
+	private String lastname;
 
-public long getId() {
-	return id;
-}
+	private String username;
 
-public void setId(long id) {
-	this.id = id;
-}
+	@Column(nullable = false)
+	private String cryptedPassword;
 
-public String getFirstname() {
-	return firstname;
-}
+	private String phone;
 
-public void setFirstname(String firstname) {
-	this.firstname = firstname;
-}
+	@Column(nullable = false, length = 120, unique = true)
+	private String email;
 
-public String getLastname() {
-	return lastname;
-}
+	private String role;
 
-public void setLastname(String lastname) {
-	this.lastname = lastname;
-}
+	@Temporal(TemporalType.TIMESTAMP)
+	@CreationTimestamp
+	private Date date_created;
 
-public String getUsername() {
-	return username;
-}
+	@Lob
+	private byte[] image;
 
-public void setUsername(String username) {
-	this.username = username;
-}
+	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private List<RecipeEntity> recipes;
 
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<CommentsEntity> comments;
 
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<FavoriteEntity> favorites;
 
-public String getUserId() {
-	return userId;
-}
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	private List<ReactionEntity> reactions;
 
-public void setUserId(String userId) {
-	this.userId = userId;
-}
+	public long getId() {
+		return id;
+	}
 
-public String getCryptedPassword() {
-	return cryptedPassword;
-}
+	public void setId(long id) {
+		this.id = id;
+	}
 
-public void setCryptedPassword(String cryptedPassword) {
-	this.cryptedPassword = cryptedPassword;
-}
+	public String getUserId() {
+		return userId;
+	}
 
-public String getPhone() {
-	return phone;
-}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 
-public void setPhone(String phone) {
-	this.phone = phone;
-}
+	public String getFirstname() {
+		return firstname;
+	}
 
-public String getEmail() {
-	return email;
-}
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
 
-public void setEmail(String email) {
-	this.email = email;
-}
+	public String getLastname() {
+		return lastname;
+	}
 
-public String getRole() {
-	return role;
-}
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
 
-public void setRole(String role) {
-	this.role = role;
-}
+	public String getUsername() {
+		return username;
+	}
 
-public Date getDate_created() {
-	return date_created;
-}
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-public void setDate_created(Date date_created) {
-	this.date_created = date_created;
-}
+	public String getCryptedPassword() {
+		return cryptedPassword;
+	}
 
-public byte[] getImage() {
-	return image;
-}
+	public void setCryptedPassword(String cryptedPassword) {
+		this.cryptedPassword = cryptedPassword;
+	}
 
-public void setImage(byte[] image) {
-	this.image = image;
-}
+	public String getPhone() {
+		return phone;
+	}
 
-public List<RecipeEntity> getRecipes() {
-	return recipes;
-}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 
-public void setRecipes(List<RecipeEntity> recipes) {
-	this.recipes = recipes;
-}
+	public String getEmail() {
+		return email;
+	}
 
-public List<CommentsEntity> getComments() {
-	return comments;
-}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-public void setComments(List<CommentsEntity> comments) {
-	this.comments = comments;
-}
+	public String getRole() {
+		return role;
+	}
 
-public List<FavoriteEntity> getFavorites() {
-	return favorites;
-}
+	public void setRole(String role) {
+		this.role = role;
+	}
 
-public void setFavorites(List<FavoriteEntity> favorites) {
-	this.favorites = favorites;
-}
+	public Date getDate_created() {
+		return date_created;
+	}
 
-public List<ReactionEntity> getReactions() {
-	return reactions;
-}
+	public void setDate_created(Date date_created) {
+		this.date_created = date_created;
+	}
 
-public void setReactions(List<ReactionEntity> reactions) {
-	this.reactions = reactions;
-}
+	public byte[] getImage() {
+		return image;
+	}
 
-
-
-
-
-
-
-
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
 
 }

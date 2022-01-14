@@ -20,9 +20,11 @@ public class StepsEntity implements Serializable{
 	private long id;
 	
 	private String description;
+	
 	private byte[] image;
 	
-
+	private String stepId;
+	
     @ManyToOne 
     private RecipeEntity recipe;
 
@@ -59,6 +61,14 @@ public class StepsEntity implements Serializable{
 	}
 	public void setImage(byte[] image) {
 		this.image = image;
+	}
+
+	public String getStepId() {
+		return stepId;
+	}
+
+	public void setStepId(String stepId) {
+		this.stepId = stepId;
 	}
 
 

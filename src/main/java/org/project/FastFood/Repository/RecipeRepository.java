@@ -10,12 +10,13 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RecipeRepository  extends JpaRepository<RecipeEntity, Long>  {
-	RecipeRepository findById(long id_recipe);
-	@Query("select r FROM RecipeEntity r inner join r.categorie c inner join r.user u where c.id = :idCategorie")
-	Page<RecipeEntity> findByCategorie(Pageable pageableRequest,@Param("idCategorie") long id_cat);
+	RecipeEntity findByRecipeId(String recipeId);
+	@Query("select r FROM RecipeEntity r inner join r.categorie c inner join r.user u where c.catId = :idCategorie")
+	Page<RecipeEntity> findByCategorie(Pageable pageableRequest,@Param("idCategorie") String id_cat);
 	@Query("select r FROM RecipeEntity r inner join r.categorie c inner join r.user u where u.userId = :idUser")
 	Page<RecipeEntity> findByUser(Pageable pageableRequest, @Param("idUser")String user_id);
-
-
+    
+	RecipeEntity findByName(String name);
+    
 
 }

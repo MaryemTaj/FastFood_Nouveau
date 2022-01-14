@@ -17,11 +17,12 @@ import org.project.FastFood.Util.Utils;
 import org.project.FastFood.dto.CategorieDto;
 import org.project.FastFood.dto.RecipeDto;
 import org.project.FastFood.dto.UserDto;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -36,9 +37,9 @@ public class RecipeServiceImp implements RecipeService {
 	Utils util;
 	
 	
-//methode get recipe by id	
+//methode get recipe by categorie	
     @Override
-	public List<RecipeDto> getRecipesByCategorie(int page, int limit, String search, int status,long id_cat ){
+	public List<RecipeDto> getRecipesByCategorie(int page, int limit, String search, int status,String id_cat ){
 					
 			if(page > 0) page = page - 1;
 			
@@ -78,16 +79,16 @@ public class RecipeServiceImp implements RecipeService {
 			UserDto userDto = modelMapper.map(currentUser, UserDto.class);
 		    recipe.setUser(userDto);
 			recipe.setCategorie(categorireDto);
+			recipe.setRecipId(util.generateStringId(32));
 			RecipeEntity recipeEntity = modelMapper.map(recipe, RecipeEntity.class); 
 			RecipeEntity newRecipe = recipeRepository.save(recipeEntity);
 			
 			RecipeDto recipeDto =  modelMapper.map(newRecipe,RecipeDto.class);
 			
-			return recipeDto;
-		
+			return recipeDto;		
 	}
 	
-//get recipe of user	
+//get recipes of user	
         @Override	
         public List<RecipeDto> getRecipeByUser(int page, int limit, String search, int status, String user_id) {
 		if(page > 0) page = page - 1;
@@ -117,13 +118,15 @@ public class RecipeServiceImp implements RecipeService {
 	
 	
 
-	//update recipe
-	/*@Override
-	public RecipeDto updateRecipe(long id_recipe,RecipeDto recipeDto) {
-		CategorieEntity categorie = categorieRepository.findByName(recipeDto.getCategorie().getName());
-		ModelMapper modelMapper = new ModelMapper(id_recipe);
-		CategorieDto categorireDto = modelMapper.map(categorie, CategorieDto.class);				
-		RecipeEntity recipeEntity = recipeRepository.findById();
+	//update recipe(not working yet) 
+	@Override
+	public RecipeDto updateRecipe(String id_recipe,RecipeDto recipeDto) {
+	   CategorieEntity categorie = categorieRepository.findByName(recipeDto.getCategorie().getName());
+		ModelMapper modelMapper = new ModelMapper();
+		CategorieDto categorieDto = modelMapper.map(categorie, CategorieDto.class);	
+		recipeDto.setCategorie(categorieDto);
+		CategorieEntity newCat = modelMapper.map(categorieDto, CategorieEntity.class);
+		RecipeEntity recipeEntity = recipeRepository.findByRecipeId(id_recipe);
 		if(recipeEntity == null) throw new UsernameNotFoundException(id_recipe); 
 		recipeEntity.setImage(recipeDto.getImage());
 		recipeEntity.setServings_numbers(recipeDto.getServings_numbers());
@@ -134,14 +137,23 @@ public class RecipeServiceImp implements RecipeService {
 		recipeEntity.setTags(recipeDto.getTags());
 		recipeEntity.setVideo(recipeDto.getVideo());
 		recipeEntity.setDifficulty(recipeDto.getDifficulty());
-		recipeEntity.setCategorie(categorireDto.get);
+		recipeEntity.setCategorie(newCat);
 		RecipeEntity recipeUpdated = recipeRepository.save(recipeEntity);
-        RecipeDto user = new RecipeDto();
-		BeanUtils.copyProperties(recipeUpdated, user);
-		return user;
-		
-	}*/
+        RecipeDto recipeDt = new RecipeDto();
+		BeanUtils.copyProperties(recipeUpdated, recipeDt);
+		return recipeDt;		
+	}
 	
+	
+	//methode get recipe by id	
+		@Override
+		public RecipeDto getRecipebyId(String recipeId){			
+		    RecipeEntity recipeEntity = recipeRepository.findByRecipeId(recipeId);
+		    if(recipeEntity == null) throw new UsernameNotFoundException(recipeId); 
+		    RecipeDto recipeDto = new RecipeDto();
+		    BeanUtils.copyProperties(recipeEntity, recipeDto);
+		    return recipeDto;
+		}
 }
 
 

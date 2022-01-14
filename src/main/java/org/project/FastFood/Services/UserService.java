@@ -15,10 +15,12 @@ public interface UserService extends UserDetailsService  {
 	UserDto createUser(UserDto user);
 	List<UserDto> getUsers(int page, int limit, String search, int status);
 	UserDto getUserbyId(String id_user);
-	UserDto updateUser(String id_user, UserDto userDto);
+	UserDto updateUser(String id, UserDto userDto);
 	void deleteUser(String userId);
 	UserDetails loadUserByUsername(String email) ;
-	UserDto getUser(String email);
+    UserDto getUser(String email);
+	//UserDto getUser(String username, String email);
+
 	
 }
 

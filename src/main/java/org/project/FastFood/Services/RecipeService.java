@@ -3,7 +3,7 @@ package org.project.FastFood.Services;
 import java.util.List;
 
 import org.project.FastFood.dto.RecipeDto;
-import org.project.FastFood.dto.UserDto;
+
 
 
 
@@ -11,20 +11,17 @@ import org.project.FastFood.dto.UserDto;
 public interface RecipeService {
 
 
-	List<RecipeDto> getRecipesByCategorie(int page, int limit, String search, int status, long id_cat);
+	List<RecipeDto> getRecipesByCategorie(int page, int limit, String search, int status, String id_cat);
 
-	//RecipeDto updateRecipe(String id_recipe, RecipeDto recipeDto);
-	//RecipeDto PostRecipe(RecipeDto recipe, long id);
-
-	//RecipeDto PostRecipe(RecipeDto recipe);
-
-	
+	RecipeDto updateRecipe(String id_recipe, RecipeDto recipeDto);
 	 
 	List<RecipeDto> getRecipeByUser(int page, int limit, String search, int status, String user_id);
 
 	RecipeDto PostRecipe(RecipeDto recipe, String email);
 
-	//RecipeDto updateRecipe(long id_recipe, RecipeDto recipeDto);
+	RecipeDto getRecipebyId(String recipeId);
+
+
 	
 
 }

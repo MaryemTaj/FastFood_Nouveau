@@ -4,6 +4,7 @@ package org.project.FastFood.Entity;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,6 +20,7 @@ public class CategorieEntity implements Serializable {
 	private static final long serialVersionUID = 6546842318111390210L;
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
+	@Column(nullable = false ,unique = true)
 	private String name;
 	private String description;
 	private String image;
@@ -33,11 +35,7 @@ public class CategorieEntity implements Serializable {
 	public void setResipes(List<RecipeEntity> resipes) {
 		this.resipes = resipes;
 	}
-	public CategorieEntity() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
+	
 	public String getName() {
 		return name;
 	}
