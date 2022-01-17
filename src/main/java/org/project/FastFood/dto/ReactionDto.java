@@ -8,6 +8,4 @@ public class ReactionDto {
 	private String emoji;
 	private UserDto user;
 
-	
-
 }

@@ -1,5 +1,9 @@
 package org.project.FastFood.Services;
 
-public interface FavoriteService {
+import org.project.FastFood.dto.FavoriteDto;
 
+public interface FavoriteService {
+	FavoriteDto addFavorite(String email, String recipeId);
+
+ 
 }

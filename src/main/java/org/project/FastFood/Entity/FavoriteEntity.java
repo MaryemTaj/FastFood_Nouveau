@@ -18,6 +18,7 @@ public class FavoriteEntity implements Serializable{
 	private static final long serialVersionUID = -47527774887820364L;
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	private String favoriteId;
 	@ManyToOne @JoinColumn(name="id_user")
 	private UserEntity user;
 	@ManyToOne @JoinColumn(name="id_recipe")
@@ -41,6 +42,12 @@ public class FavoriteEntity implements Serializable{
 	}
 	public void setRecipe(RecipeEntity recipe) {
 		this.recipe = recipe;
+	}
+	public String getFavoriteId() {
+		return favoriteId;
+	}
+	public void setFavoriteId(String favoriteId) {
+		this.favoriteId = favoriteId;
 	}
 
 }

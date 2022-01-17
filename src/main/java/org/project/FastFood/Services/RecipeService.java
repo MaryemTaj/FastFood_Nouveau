@@ -22,6 +22,5 @@ public interface RecipeService {
 	RecipeDto getRecipebyId(String recipeId);
 
 
-	
 
 }
