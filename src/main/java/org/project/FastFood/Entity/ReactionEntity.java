@@ -19,6 +19,7 @@ public class ReactionEntity implements Serializable{
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY) 
 	private long id;
 	private String emoji;
+	private String reactionId;
 	@ManyToOne @JoinColumn(name="id_user")
 	private UserEntity user;
 	@ManyToOne @JoinColumn(name="id_recipe")
@@ -49,6 +50,13 @@ public class ReactionEntity implements Serializable{
 	public void setRecipe(RecipeEntity recipe) {
 		this.recipe = recipe;
 	}
+	public String getReactionId() {
+		return reactionId;
+	}
+	public void setReactionId(String reactionId) {
+		this.reactionId = reactionId;
+	}
+
 	
 	
 

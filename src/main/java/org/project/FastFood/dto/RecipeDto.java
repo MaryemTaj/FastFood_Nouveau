@@ -36,7 +36,8 @@ public class RecipeDto implements Serializable {
 	private String cook_time;
 	private String pays;
 	private String tags;
-	private String recipId;
+	
+	private String recipeId;
 	private UserDto user;
 	private CategorieDto categorie;
 	
@@ -248,14 +249,16 @@ public class RecipeDto implements Serializable {
 	}
 
 
-	public String getRecipId() {
-		return recipId;
+	public String getRecipeId() {
+		return recipeId;
 	}
 
 
-	public void setRecipId(String recipId) {
-		this.recipId = recipId;
+	public void setRecipeId(String recipeId) {
+		this.recipeId = recipeId;
 	}
+
+
 	
 	
 	

@@ -2,7 +2,7 @@ package org.project.FastFood.dto;
 
 public class FavoriteDto {
 	private long id;
-    private String favoriteId;
+    private String favId;
     private UserDto user;
     private RecipeDto recipe;
 	public long getId() {
@@ -11,12 +11,7 @@ public class FavoriteDto {
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getFavoriteId() {
-		return favoriteId;
-	}
-	public void setFavoriteId(String favoriteId) {
-		this.favoriteId = favoriteId;
-	}
+	
 	public UserDto getUser() {
 		return user;
 	}
@@ -28,6 +23,12 @@ public class FavoriteDto {
 	}
 	public void setRecipe(RecipeDto recipe) {
 		this.recipe = recipe;
+	}
+	public String getFavId() {
+		return favId;
+	}
+	public void setFavId(String favId) {
+		this.favId = favId;
 	}
 	
 	

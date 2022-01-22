@@ -47,7 +47,7 @@ public class CategorieServiceImp implements CategorieService{
 		catEntity.setDescription(categorieDto.getDescription());
 		catEntity.setName(categorieDto.getName());
 		catEntity.setImage(categorieDto.getImage());		
-		CategorieEntity CategorieUpdated =categorieRepository.save(catEntity);	
+		CategorieEntity CategorieUpdated = categorieRepository.save(catEntity);	
 		CategorieDto categorie = new CategorieDto();
 		BeanUtils.copyProperties(CategorieUpdated, categorie);
 			

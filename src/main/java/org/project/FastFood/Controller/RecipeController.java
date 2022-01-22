@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 import org.project.FastFood.Request.RecipeRequest;
 import org.project.FastFood.Response.RecipeResponse;
 import org.project.FastFood.Services.RecipeService;
@@ -64,7 +65,8 @@ public class RecipeController {
 	public ResponseEntity<RecipeResponse> postRecipe(@RequestBody RecipeRequest recipeR, Principal principal) {
 
 		ModelMapper modelMapper = new ModelMapper();
-
+		modelMapper.getConfiguration()
+        .setMatchingStrategy(MatchingStrategies.STRICT);
 		RecipeDto recipeDto = modelMapper.map(recipeR, RecipeDto.class);
 
 		RecipeDto createRecipe = recipeService.PostRecipe(recipeDto, principal.getName());
@@ -103,7 +105,8 @@ public class RecipeController {
 	// api update recipe
 
 	@PutMapping("/{id_recipe}")
-	public ResponseEntity<RecipeResponse> UpdateUser(@PathVariable String id_recipe,
+	public ResponseEntity<RecipeResponse> UpdateUser(
+			@PathVariable String id_recipe,
 			@RequestBody RecipeRequest recipeRequest) {
 		RecipeDto recipeDto = new RecipeDto();
 		BeanUtils.copyProperties(recipeRequest, recipeDto);

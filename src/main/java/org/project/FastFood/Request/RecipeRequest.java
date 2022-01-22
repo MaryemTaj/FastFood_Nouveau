@@ -4,6 +4,7 @@ package org.project.FastFood.Request;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 
@@ -13,6 +14,7 @@ public class RecipeRequest {
 	private String image;
 	private String video;
 	@NotNull(message = "Ce champ ne doit etre null !")
+	@NotBlank(message = "Ce champ ne doit etre null !")
 	private String name;
 	
 	private String servings_numbers;
@@ -25,6 +27,8 @@ public class RecipeRequest {
 	private String prep_time;
 	@NotNull(message = "Ce champ ne doit etre null !")
 	private String cook_time;
+	
+	private String recipeId;
 	
 	private UserRequest user;
 	private CategorieRequest categorie;	
@@ -163,6 +167,14 @@ public class RecipeRequest {
 
 	public void setComments(List<CommentsRequest> comments) {
 		this.comments = comments;
+	}
+
+	public String getRecipeId() {
+		return recipeId;
+	}
+
+	public void setRecipeId(String recipeId) {
+		this.recipeId = recipeId;
 	}
 	
 	

@@ -20,7 +20,8 @@ public class RecipeResponse {
 	private String prep_time;
 	private String cook_time;
 	private UserResponse user;	
-	
+	private String recipeId;
+	private Date update_date;
 	private List<StepsResponse> steps_recipes;
 	
 	private CategorieResponse categorie;
@@ -147,28 +148,32 @@ public class RecipeResponse {
 		this.ingredients = ingredients;
 	}
 
-	public List<FavoriteResponse> getFavorites() {
-		return favorites;
+	
+	
+
+
+	public String getRecipeId() {
+		return recipeId;
 	}
 
-	public void setFavorites(List<FavoriteResponse> favorites) {
-		this.favorites = favorites;
+	public void setRecipeId(String recipeId) {
+		this.recipeId = recipeId;
 	}
 
-	public List<ReactionResponse> getReactions() {
-		return reactions;
+	public List<StepsResponse> getSteps_recipes() {
+		return steps_recipes;
 	}
 
-	public void setReactions(List<ReactionResponse> reactions) {
-		this.reactions = reactions;
+	public void setSteps_recipes(List<StepsResponse> steps_recipes) {
+		this.steps_recipes = steps_recipes;
 	}
 
-	public List<CommentsResponse> getComments() {
-		return comments;
+	public Date getUpdate_date() {
+		return update_date;
 	}
 
-	public void setComments(List<CommentsResponse> comments) {
-		this.comments = comments;
+	public void setUpdate_date(Date update_date) {
+		this.update_date = update_date;
 	}
 
 	

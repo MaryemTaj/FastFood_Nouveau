@@ -6,17 +6,17 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 public class UserRequest {
-	
 	@NotNull(message = "Ce champ ne doit etre null !")
+	@NotBlank(message = "Ce champ ne doit etre null !")
 	private String firstname;
 	
-	
 	@NotNull(message = "Ce champ ne doit etre null !")
+	@NotBlank(message = "Ce champ ne doit etre null !")
 	private String lastname;
 	
 	private String username;
-	
-	@NotNull(message = "Ce champ ne doit etre null !")
+	@NotNull(message = "Ce champ ne doit pas etre null !")
+	@NotBlank(message = "Ce champ ne doit etre null !")
 	private String password;
 	
 	

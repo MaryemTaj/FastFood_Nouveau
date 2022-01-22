@@ -5,8 +5,10 @@ import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.project.FastFood.Entity.RecipeEntity;
 import org.project.FastFood.Entity.StepsEntity;
+import org.project.FastFood.Exception.UserException;
 import org.project.FastFood.Repository.RecipeRepository;
 import org.project.FastFood.Repository.StepsRepository;
+import org.project.FastFood.Response.ErrorMessage;
 import org.project.FastFood.Services.StepsService;
 import org.project.FastFood.Util.Utils;
 import org.project.FastFood.dto.RecipeDto;
@@ -54,7 +56,7 @@ public class StepsServiceImp implements StepsService {
 	@Override
 	public StepsDto getStepsbyId(String stepsId) {
 		 StepsEntity stepsEntity = stepsRepository.findByStepId(stepsId);
-		    if(stepsEntity == null) throw new UsernameNotFoundException(stepsId); 
+		    if(stepsEntity == null) throw new UserException(ErrorMessage.NO_RECORD_FOUND.getErrorMessage());
 		    StepsDto stepsDto = new StepsDto();
 		    BeanUtils.copyProperties(stepsEntity, stepsDto);
 		    return stepsDto;

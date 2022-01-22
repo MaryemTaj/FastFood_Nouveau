@@ -2,6 +2,7 @@ package org.project.FastFood.Entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,19 +14,19 @@ import javax.persistence.Table;
 
 @Entity @Table(name="T_ingredient")
 public class IngredientEntity implements Serializable{
-/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 8235157328120464229L;
-@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+    @Column(nullable = false)
 	private String name;
 	private String description;
 	@Lob
 	private byte[] image;
 	private int quantity;
+	 @Column(nullable = false)
 	private String measure_type;
-	
+	 @Column(nullable = false)
 	private String ingredientId;
 	@ManyToOne @JoinColumn(name="id_recipe")
 	private RecipeEntity recipe;

@@ -1,17 +1,21 @@
 package org.project.FastFood.ServicesImp;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
 import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 import org.project.FastFood.Entity.CategorieEntity;
 import org.project.FastFood.Entity.RecipeEntity;
 import org.project.FastFood.Entity.UserEntity;
 import org.project.FastFood.Repository.CategorieRepository;
 import org.project.FastFood.Repository.RecipeRepository;
 import org.project.FastFood.Repository.UsersRepository;
-
 import org.project.FastFood.Services.RecipeService;
 import org.project.FastFood.Util.Utils;
 import org.project.FastFood.dto.CategorieDto;
@@ -37,7 +41,7 @@ public class RecipeServiceImp implements RecipeService {
 	Utils util;
 	
 	
-//methode get recipe by categorie	
+//methode get recipes	 by categorie	
     @Override
 	public List<RecipeDto> getRecipesByCategorie(int page, int limit, String search, int status,String id_cat ){
 					
@@ -70,8 +74,10 @@ public class RecipeServiceImp implements RecipeService {
 	@Override
 	public RecipeDto PostRecipe(RecipeDto recipe,String email) {
 		
-		    CategorieEntity categorie = categorieRepository.findByName(recipe.getCategorie().getName());
+		    CategorieEntity categorie = categorieRepository.findByCatId(recipe.getCategorie().getCatId());
 		    ModelMapper modelMapper = new ModelMapper();
+		    modelMapper.getConfiguration()
+	        .setMatchingStrategy(MatchingStrategies.STRICT);
 		    CategorieDto categorireDto = modelMapper.map(categorie, CategorieDto.class);
 		    
 		    UserEntity currentUser = userRepository.findByEmail(email);			
@@ -79,7 +85,8 @@ public class RecipeServiceImp implements RecipeService {
 			UserDto userDto = modelMapper.map(currentUser, UserDto.class);
 		    recipe.setUser(userDto);
 			recipe.setCategorie(categorireDto);
-			recipe.setRecipId(util.generateStringId(32));
+			recipe.setRecipeId(util.generateStringId(32));
+			recipe.setUpdate_date(null);
 			RecipeEntity recipeEntity = modelMapper.map(recipe, RecipeEntity.class); 
 			RecipeEntity newRecipe = recipeRepository.save(recipeEntity);
 			
@@ -117,11 +124,36 @@ public class RecipeServiceImp implements RecipeService {
 	}	
 	
 	
+        
+      //update recipe(not working yet) 
+    	@Override
+    	public RecipeDto updateRecipe(String id_recipe,RecipeDto recipeDto) { 
+    		ModelMapper modelMapper = new ModelMapper();
+    		RecipeEntity recipeEntity = recipeRepository.findByRecipeId(id_recipe);
+    		recipeEntity.setDescription(recipeDto.getDescription());
+    		recipeEntity.setName(recipeDto.getName());
+    		recipeEntity.setImage(recipeDto.getImage());	
+    		recipeEntity.setCook_time(recipeDto.getCook_time());	
+    		recipeEntity.setDifficulty(recipeDto.getDifficulty());	
+    		recipeEntity.setPrep_time(recipeDto.getPrep_time());	
+    		recipeEntity.setPays(recipeDto.getPays());	
+    		recipeEntity.setServings_numbers(recipeDto.getServings_numbers());
+    		recipeEntity.setUpdate_date(util.getLocalDateTime());
+    		CategorieEntity categorie = categorieRepository.findByName(recipeDto.getCategorie().getName());
+    		recipeEntity.setCategorie(categorie);
+    		RecipeEntity RecipeUpdated =recipeRepository.save(recipeEntity);	
+    		RecipeDto recipe = new RecipeDto();
+    		BeanUtils.copyProperties(RecipeUpdated, recipe);
+    			
+    		return recipe;
+    		
+    	}
+        
 
 	//update recipe(not working yet) 
-	@Override
+	/*@Override
 	public RecipeDto updateRecipe(String id_recipe,RecipeDto recipeDto) {
-	   CategorieEntity categorie = categorieRepository.findByName(recipeDto.getCategorie().getName());
+	    CategorieEntity categorie = categorieRepository.findByCatId(recipeDto.getCategorie().getCatId());
 		ModelMapper modelMapper = new ModelMapper();
 		CategorieDto categorieDto = modelMapper.map(categorie, CategorieDto.class);	
 		recipeDto.setCategorie(categorieDto);
@@ -142,7 +174,7 @@ public class RecipeServiceImp implements RecipeService {
         RecipeDto recipeDt = new RecipeDto();
 		BeanUtils.copyProperties(recipeUpdated, recipeDt);
 		return recipeDt;		
-	}
+	}*/
 	
 	
 	//methode get recipe by id	

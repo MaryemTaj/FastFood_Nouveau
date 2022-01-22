@@ -2,11 +2,14 @@ package org.project.FastFood.Request;
 
 import java.util.List;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 public class CategorieRequest {
 	@NotNull(message = "Ce champ ne doit etre null !")
-	
+	private String catId;
+	@NotBlank(message = "Ce champ ne doit etre null !")
+	@NotNull(message = "Ce champ ne doit etre null !")
 	private String name;
 	private String description;
 	private String image;
@@ -43,6 +46,14 @@ public class CategorieRequest {
 
 	public void setResipes(List<RecipeRequest> resipes) {
 		this.resipes = resipes;
+	}
+
+	public String getCatId() {
+		return catId;
+	}
+
+	public void setCatId(String catId) {
+		this.catId = catId;
 	}
 
 }

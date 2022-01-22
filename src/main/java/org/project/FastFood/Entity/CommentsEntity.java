@@ -3,6 +3,7 @@ package org.project.FastFood.Entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.CreationTimestamp;
 @Entity @Table(name="T_comments")
 public class CommentsEntity implements Serializable {
 /**
@@ -20,9 +23,13 @@ public class CommentsEntity implements Serializable {
 	private static final long serialVersionUID = 8989443625010538348L;
 @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 private long id;
+@Column(nullable = false)
 private String text;
 @Temporal(TemporalType.TIMESTAMP)
+@CreationTimestamp
 private Date date_comment;
+
+private String commentId;
 
 @ManyToOne
 @JoinColumn(name="id_recipe")
@@ -62,6 +69,12 @@ public Date getDate_comment() {
 }
 public void setDate_comment(Date date_comment) {
 	this.date_comment = date_comment;
+}
+public String getCommentId() {
+	return commentId;
+}
+public void setCommentId(String commentId) {
+	this.commentId = commentId;
 }
 
 }

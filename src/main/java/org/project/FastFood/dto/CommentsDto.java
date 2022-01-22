@@ -14,7 +14,7 @@ private static final long serialVersionUID = 4435880361039800115L;
 private long id;
 private String text;
 private Date date_comment;
-
+private String commentId;
 private RecipeDto recipe;
 
 private UserDto user;
@@ -57,6 +57,14 @@ public UserDto getUser() {
 
 public void setUser(UserDto user) {
 	this.user = user;
+}
+
+public String getCommentId() {
+	return commentId;
+}
+
+public void setCommentId(String commentId) {
+	this.commentId = commentId;
 }
 
 

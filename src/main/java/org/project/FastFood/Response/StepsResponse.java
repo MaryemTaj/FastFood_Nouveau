@@ -17,12 +17,6 @@ public class StepsResponse {
 	public void setImage(byte[] image) {
 		this.image = image;
 	}
-	public RecipeResponse getRecipe() {
-		return recipe;
-	}
-	public void setRecipe(RecipeResponse recipe) {
-		this.recipe = recipe;
-	}
 	
 	
 

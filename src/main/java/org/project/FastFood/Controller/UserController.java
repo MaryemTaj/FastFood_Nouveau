@@ -75,7 +75,9 @@ public class UserController {
 	public ResponseEntity<UserResponse> getUser(@PathVariable String id_user) {
 
 		UserDto userDto = userService.getUserbyId(id_user);
+		
 		UserResponse userResponse = new UserResponse();
+		
 		BeanUtils.copyProperties(userDto, userResponse);
 
 		return new ResponseEntity<UserResponse>(userResponse, HttpStatus.OK);

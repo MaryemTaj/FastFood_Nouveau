@@ -15,8 +15,12 @@ public interface UsersRepository extends PagingAndSortingRepository<UserEntity, 
 	@Query("SELECT user FROM UserEntity user")
 	Page<UserEntity> findAllUsers(Pageable pageableRequest);	
 	UserEntity findByUserId(String userId);
-     UserEntity findByEmail(String email);
+    UserEntity findByEmail(String email);
 	Optional<UserEntity> findByUsernameOrEmail(String username, String email);
+	@Query("SELECT u FROM UserEntity u  left join u.reactions re left join re.recipe r where r.recipeId=:recipeId and re.emoji=:emoji")	
+	Page<UserEntity> findAllUsersByReactionEmojiAndRecipe(Pageable pageableRequest, String recipeId,String emoji);
+	@Query("SELECT count(u) FROM UserEntity u  left join u.reactions re left join re.recipe r where r.recipeId=:recipeId and re.emoji=:emoji")	
+	int countAllUsersByReactionEmojiAndRecipe( String recipeId,String emoji);
 
 	
 

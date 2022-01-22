@@ -7,7 +7,7 @@ import java.util.List;
 
 
 public class CategorieResponse {
-	
+	private String catId;
 	private String name;
 	private String description;
 	private String image;
@@ -41,6 +41,12 @@ public class CategorieResponse {
 
 	public void setResipes(List<RecipeResponse> resipes) {
 		this.resipes = resipes;
+	}
+	public String getCatId() {
+		return catId;
+	}
+	public void setCatId(String catId) {
+		this.catId = catId;
 	}
 	
 	

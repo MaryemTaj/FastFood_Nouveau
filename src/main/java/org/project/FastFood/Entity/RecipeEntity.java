@@ -51,6 +51,7 @@ public class RecipeEntity implements Serializable {
 	private boolean featured;
 	private String difficulty;
 	@Column(nullable = false)
+	
 	private String recipeId;
 	@Column(nullable = false)
 	private String prep_time;

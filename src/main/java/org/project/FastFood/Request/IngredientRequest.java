@@ -1,12 +1,19 @@
 package org.project.FastFood.Request;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class IngredientRequest {
 
-	
+	@NotNull(message = "Ce champ ne doit etre null !")
+	@NotBlank(message = "Ce champ ne doit etre null !")
 	private String name;
 	private String description;
 	private String image;
+	
 	private int quantity;
+	@NotNull(message = "Ce champ ne doit etre null !")
+	@NotBlank(message = "Ce champ ne doit etre null !")
 	private String measure_type;
 	
 	public IngredientRequest() {

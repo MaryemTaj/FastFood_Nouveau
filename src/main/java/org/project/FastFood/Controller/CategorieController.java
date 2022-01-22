@@ -3,6 +3,8 @@ package org.project.FastFood.Controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.modelmapper.ModelMapper;
 import org.project.FastFood.Request.CategorieRequest;
 import org.project.FastFood.Response.CategorieResponse;
@@ -33,7 +35,7 @@ CategorieService categorieService;
 /********************************API AJOUTER CATEGORIE***************************************/
 
 @PostMapping("/add")
-public ResponseEntity<CategorieResponse> addCategorie(@RequestBody CategorieRequest catRequest)throws Exception{
+public ResponseEntity<CategorieResponse> addCategorie(@RequestBody @Valid CategorieRequest catRequest)throws Exception{
 	ModelMapper modelmap = new ModelMapper();
 	CategorieDto CatDto = modelmap.map(catRequest, CategorieDto.class);
 	CategorieDto newCat = categorieService.AddCategorie(CatDto);
