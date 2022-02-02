@@ -6,6 +6,9 @@ import javax.validation.constraints.NotNull;
 public class StepsRequest {
 	@NotNull(message = "Ce champ ne doit etre null !")
 	@NotBlank(message = "Ce champ ne doit etre null !")
+	private int number_step;
+	@NotNull(message = "Ce champ ne doit etre null !")
+	@NotBlank(message = "Ce champ ne doit etre null !")
 	private String description;
 	private byte[] image;
 	private RecipeRequest recipe;
@@ -27,6 +30,12 @@ public class StepsRequest {
 	}
 	public void setRecipe(RecipeRequest recipe) {
 		this.recipe = recipe;
+	}
+	public int getNumber_step() {
+		return number_step;
+	}
+	public void setNumber_step(int number_step) {
+		this.number_step = number_step;
 	}
 	
 	

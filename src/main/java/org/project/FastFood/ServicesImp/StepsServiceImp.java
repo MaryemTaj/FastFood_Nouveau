@@ -86,7 +86,8 @@ public class StepsServiceImp implements StepsService {
 			
 				StepsEntity stepEntity = stepsRepository.findByStepId(id);
 				stepEntity.setDescription(stepsDto.getDescription());
-				stepEntity.setImage(stepsDto.getImage());		
+				stepEntity.setImage(stepsDto.getImage());	
+				stepEntity.setNumber_step(stepsDto.getNumber_step());
 				StepsEntity stepUpdated =stepsRepository.save(stepEntity);	
 				StepsDto step = new StepsDto();
 				BeanUtils.copyProperties(stepUpdated, step);

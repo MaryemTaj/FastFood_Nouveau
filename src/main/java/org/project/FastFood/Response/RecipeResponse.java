@@ -3,6 +3,8 @@ package org.project.FastFood.Response;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 
 
@@ -11,8 +13,9 @@ public class RecipeResponse {
 	private String image;
 	private String video;
 	private String name;
+	 @JsonIgnore
 	private Date submit_date;
-	private String servings_numbers;
+	 private int servings_numbers;
 	private String description;
 	private String totals_views;
 	private boolean featured;
@@ -22,17 +25,20 @@ public class RecipeResponse {
 	private UserResponse user;	
 	private String recipeId;
 	private Date update_date;
+	private String pays;
+	private String tags;
 	private List<StepsResponse> steps_recipes;
 	
 	private CategorieResponse categorie;
 	
 	private  List<IngredientResponse> ingredients;
 	
-	private List<FavoriteResponse> favorites ;
+	private List<FavoriteResponse> favorites;
 	
 	private List<ReactionResponse> reactions ;
 	
 	private List<CommentsResponse> comments;
+	
 	public String getImage() {
 		return image;
 	}
@@ -64,12 +70,14 @@ public class RecipeResponse {
 	public void setSubmit_date(Date submit_date) {
 		this.submit_date = submit_date;
 	}
+     
+	
 
-	public String getServings_numbers() {
+	public int getServings_numbers() {
 		return servings_numbers;
 	}
 
-	public void setServings_numbers(String servings_numbers) {
+	public void setServings_numbers(int servings_numbers) {
 		this.servings_numbers = servings_numbers;
 	}
 
@@ -136,13 +144,7 @@ public class RecipeResponse {
 		return categorie;
 	}
 
-	public void setCategorie(CategorieResponse categorie) {
-		this.categorie = categorie;
-	}
-
-	public List<IngredientResponse> getIngredients() {
-		return ingredients;
-	}
+	
 
 	public void setIngredients(List<IngredientResponse> ingredients) {
 		this.ingredients = ingredients;
@@ -174,6 +176,46 @@ public class RecipeResponse {
 
 	public void setUpdate_date(Date update_date) {
 		this.update_date = update_date;
+	}
+
+	public String getPays() {
+		return pays;
+	}
+
+	public void setPays(String pays) {
+		this.pays = pays;
+	}
+
+	public String getTags() {
+		return tags;
+	}
+
+	public void setTags(String tags) {
+		this.tags = tags;
+	}
+
+	public List<FavoriteResponse> getFavorites() {
+		return favorites;
+	}
+
+	public void setFavorites(List<FavoriteResponse> favorites) {
+		this.favorites = favorites;
+	}
+
+	public List<ReactionResponse> getReactions() {
+		return reactions;
+	}
+
+	public void setReactions(List<ReactionResponse> reactions) {
+		this.reactions = reactions;
+	}
+
+	public List<CommentsResponse> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<CommentsResponse> comments) {
+		this.comments = comments;
 	}
 
 	

@@ -63,6 +63,7 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter{
 	                .setSubject(userName)
 	                .claim("id", userDto.getUserId())
 	                .claim("name", userDto.getFirstname() + " " + userDto.getLastname())
+	                .claim("role", userDto.getRole())
 	                .setExpiration(new Date(System.currentTimeMillis() + SecurityConstants.EXPIRATION_TIME))
 	                .signWith(SignatureAlgorithm.HS512, SecurityConstants.TOKEN_SECRET )
 	                .compact();
@@ -72,7 +73,10 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter{
 	        res.addHeader(SecurityConstants.HEADER_STRING, SecurityConstants.TOKEN_PREFIX + token);
 	        res.addHeader("user_id", userDto.getUserId());
 	        
-	        res.getWriter().write("{\"token\": \"" + token + "\", \"id\": \""+ userDto.getUserId() + "\"}");
+	        res.getWriter().write("{\"token\": \"" + token + "\", "
+	        		        + "\"id\": \""+ userDto.getUserId() + "\", "
+	        				+ "\"role\": \""+ userDto.getRole() + "\","
+	        				+ "\"name\": \""+ userDto.getFirstname() + " " + userDto.getLastname()+"\"}");
 
 	    } 
 }

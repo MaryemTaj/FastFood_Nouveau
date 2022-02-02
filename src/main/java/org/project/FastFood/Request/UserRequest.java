@@ -27,6 +27,7 @@ public class UserRequest {
 	private String email;
 	
 	private String image;
+	private String role;
 
 	private List<RecipeRequest> recipes;
 
@@ -127,5 +128,14 @@ public class UserRequest {
 	public void setReactions(List<ReactionRequest> reactions) {
 		this.reactions = reactions;
 	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+	
 
 }

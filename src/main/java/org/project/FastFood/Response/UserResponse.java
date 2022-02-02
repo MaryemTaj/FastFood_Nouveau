@@ -16,7 +16,7 @@ public class UserResponse {
 	private String phone;
 	private String email;
 	private String image;
-
+	private String role;
 
 	private  List<RecipeResponse> recipe;
 
@@ -69,6 +69,14 @@ public String getImage() {
 
 public void setImage(String image) {
 	this.image = image;
+}
+
+public String getRole() {
+	return role;
+}
+
+public void setRole(String role) {
+	this.role = role;
 }
 
 

@@ -20,7 +20,9 @@ public interface UserService extends UserDetailsService  {
 	UserDetails loadUserByUsername(String email) ;
     UserDto getUser(String email);
 	//UserDto getUser(String username, String email);
-
+	UserDto AddUserByAdmin(UserDto user);
+	UserDto updateRole(String userId, UserDto userDto);
+	//UserDto getUser(String email, String username);
 	
 }
 

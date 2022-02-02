@@ -13,7 +13,7 @@ public class CategorieResponse {
 	private String image;
 
 
-	private List<RecipeResponse> resipes ;
+	private List<RecipeResponse> recipes ;
 
 	
 	public String getName() {
@@ -35,12 +35,12 @@ public class CategorieResponse {
 		this.image = image;
 	}
 
-	public List<RecipeResponse> getResipes() {
-		return resipes;
+	
+	public List<RecipeResponse> getRecipes() {
+		return recipes;
 	}
-
-	public void setResipes(List<RecipeResponse> resipes) {
-		this.resipes = resipes;
+	public void setRecipes(List<RecipeResponse> recipes) {
+		this.recipes = recipes;
 	}
 	public String getCatId() {
 		return catId;

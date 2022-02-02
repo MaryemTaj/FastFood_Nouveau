@@ -3,6 +3,7 @@ package org.project.FastFood.dto;
 public class StepsDto {
 	
     private int id;
+	private int number_step;
 	private String description;
 	private byte[] image;
 	private String stepId;
@@ -42,6 +43,14 @@ public class StepsDto {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public int getNumber_step() {
+		return number_step;
+	}
+
+	public void setNumber_step(int number_step) {
+		this.number_step = number_step;
 	}
 
 

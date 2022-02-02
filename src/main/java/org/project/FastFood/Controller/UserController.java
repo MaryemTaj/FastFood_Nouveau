@@ -25,15 +25,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/")
 public class UserController {
 
 	@Autowired
 	UserService userService;
 
 	//api get all users
-
-	@GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE })
+          
+	@GetMapping(produces = { MediaType.APPLICATION_JSON_VALUE },
+	path ="/admin/users")
 	public ResponseEntity<List<UserResponse>> getAllUsers(@RequestParam(value = "page", defaultValue = "1") int page,
 			@RequestParam(value = "limit", defaultValue = "4") int limit,
 			@RequestParam(value = "search", defaultValue = "") String search,
@@ -57,7 +58,7 @@ public class UserController {
 	//api create user
 	 
 
-	@PostMapping("/add")
+	@PostMapping("/registration")
 	public ResponseEntity<UserResponse> createUser(@RequestBody @Valid UserRequest userR) throws Exception {
 		// if(userR.getEmail().isEmpty()) throw new
 		// Exception(ErrorMessage.MISSING_REQUIRED_FIELD.getErrorMessage());
@@ -67,6 +68,40 @@ public class UserController {
 		UserResponse userResponse = modelMapper.map(createUser, UserResponse.class);
 		return new ResponseEntity<UserResponse>(userResponse, HttpStatus.CREATED);
 	}
+
+  //api add users and admin by admin	
+	
+	@PostMapping("admin/addUsers")
+	public ResponseEntity<UserResponse> createAdmin(@RequestBody @Valid UserRequest userR) throws Exception {
+		// if(userR.getEmail().isEmpty()) throw new
+		// Exception(ErrorMessage.MISSING_REQUIRED_FIELD.getErrorMessage());
+		ModelMapper modelMapper = new ModelMapper();
+		UserDto userDto = modelMapper.map(userR, UserDto.class);
+		UserDto createUser = userService.AddUserByAdmin(userDto);
+		UserResponse userResponse = modelMapper.map(createUser, UserResponse.class);
+		return new ResponseEntity<UserResponse>(userResponse, HttpStatus.CREATED);
+	}
+	
+   //api update role of users by admin
+	
+	
+	@PutMapping(path = "admin/{id}/role", consumes = { MediaType.APPLICATION_JSON_VALUE }, produces = {
+			MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<UserResponse> updateRole(@PathVariable String id, @RequestBody UserRequest userRequest) {
+
+		UserDto userDto = new UserDto();
+
+		BeanUtils.copyProperties(userRequest, userDto);
+
+		UserDto updateUser = userService.updateRole(id, userDto);
+
+		UserResponse userResponse = new UserResponse();
+
+		BeanUtils.copyProperties(updateUser, userResponse);
+
+		return new ResponseEntity<UserResponse>(userResponse, HttpStatus.ACCEPTED);
+	}
+	
 
 	//api get users by id
 

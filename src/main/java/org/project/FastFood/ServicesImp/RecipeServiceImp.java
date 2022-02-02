@@ -128,8 +128,11 @@ public class RecipeServiceImp implements RecipeService {
       //update recipe(not working yet) 
     	@Override
     	public RecipeDto updateRecipe(String id_recipe,RecipeDto recipeDto) { 
-    		ModelMapper modelMapper = new ModelMapper();
+    		//ModelMapper modelMapper = new ModelMapper();
+    		
+    		CategorieEntity categorie = categorieRepository.findByName(recipeDto.getCategorie().getName());
     		RecipeEntity recipeEntity = recipeRepository.findByRecipeId(id_recipe);
+    		
     		recipeEntity.setDescription(recipeDto.getDescription());
     		recipeEntity.setName(recipeDto.getName());
     		recipeEntity.setImage(recipeDto.getImage());	
@@ -139,12 +142,13 @@ public class RecipeServiceImp implements RecipeService {
     		recipeEntity.setPays(recipeDto.getPays());	
     		recipeEntity.setServings_numbers(recipeDto.getServings_numbers());
     		recipeEntity.setUpdate_date(util.getLocalDateTime());
-    		CategorieEntity categorie = categorieRepository.findByName(recipeDto.getCategorie().getName());
+    		recipeEntity.setVideo(recipeDto.getVideo());
     		recipeEntity.setCategorie(categorie);
-    		RecipeEntity RecipeUpdated =recipeRepository.save(recipeEntity);	
+    		recipeEntity.setTags(recipeDto.getTags());
+    		RecipeEntity RecipeUpdated = recipeRepository.save(recipeEntity);	
     		RecipeDto recipe = new RecipeDto();
     		BeanUtils.copyProperties(RecipeUpdated, recipe);
-    			
+    		
     		return recipe;
     		
     	}

@@ -2,6 +2,7 @@ package org.project.FastFood.Entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,6 +25,8 @@ public class StepsEntity implements Serializable{
 	private byte[] image;
 	
 	private String stepId;
+	@Column(nullable = false)
+	private int number_step;
 	
     @ManyToOne 
     private RecipeEntity recipe;
@@ -69,6 +72,14 @@ public class StepsEntity implements Serializable{
 
 	public void setStepId(String stepId) {
 		this.stepId = stepId;
+	}
+
+	public int getNumber_step() {
+		return number_step;
+	}
+
+	public void setNumber_step(int number_step) {
+		this.number_step = number_step;
 	}
 
 

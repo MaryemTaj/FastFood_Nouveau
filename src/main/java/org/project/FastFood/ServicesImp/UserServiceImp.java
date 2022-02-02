@@ -1,8 +1,11 @@
 package org.project.FastFood.ServicesImp;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+
 import org.project.FastFood.Repository.UsersRepository;
+import org.project.FastFood.Security.UserDetailsImpl;
 import org.project.FastFood.Services.UserService;
 import org.project.FastFood.Util.Utils;
 import org.project.FastFood.dto.UserDto;
@@ -30,7 +33,7 @@ public class UserServiceImp implements UserService {
 	Utils util;
 	
    
-	
+
 	
 // methode create new users(registration users)
 	    @Override
@@ -43,17 +46,64 @@ public class UserServiceImp implements UserService {
 		UserEntity userEntity = modelMapper.map(user, UserEntity.class); 
 		userEntity.setCryptedPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		userEntity.setUserId(util.generateStringId(32));;
-		userEntity.setRole("user");
+		userEntity.setRole("USER");
+		UserEntity newUser = userRepository.save(userEntity);
+		
+		UserDto userDto =  modelMapper.map(newUser, UserDto.class);
+		
+		return userDto;	
+	 
+ }
+//add users with roles by admin	    
+	    @Override
+        public UserDto AddUserByAdmin(UserDto user) {
+	    	
+	    UserEntity UserChercher = userRepository.findByEmail(user.getEmail());
+			
+		if( UserChercher != null) throw new RuntimeException("User Already Exists !");
+	    ModelMapper modelMapper = new ModelMapper();
+		UserEntity userEntity = modelMapper.map(user, UserEntity.class); 
+		userEntity.setCryptedPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+		userEntity.setUserId(util.generateStringId(32));;
+	    String role = user.getRole();
+	    String roleAdmin = "ADMIN";
+	    String roleUser = "USER";
+	    
+		if((role.equals(roleAdmin) == false) && (role.equals(roleUser) == false) ) throw new RuntimeException("vous devez entrer un role valide !");
+		userEntity.setRole(role);
 		UserEntity newUser = userRepository.save(userEntity);
 		
 		UserDto userDto =  modelMapper.map(newUser, UserDto.class);
 		
 		return userDto;
 		
-		
-	 
+			 
  }
- 
+	    
+//	update role by admin 
+	    
+	    @Override
+		public UserDto updateRole(String userId, UserDto userDto) {
+
+			UserEntity userEntity = userRepository.findByUserId(userId);
+
+			if (userEntity == null)
+				throw new UsernameNotFoundException(userId);
+			String role = userDto.getRole();
+		    String roleAdmin = "ADMIN";
+		    String roleUser = "USER";
+		    
+			if((role.equals(roleAdmin) == false) && (role.equals(roleUser) == false) ) throw new RuntimeException("vous devez entrer un role valide (admin ou user) !");
+			userEntity.setRole(role);			
+			UserEntity userUpdateRole = userRepository.save(userEntity);
+
+			UserDto user = new UserDto();
+
+			BeanUtils.copyProperties(userUpdateRole , user);
+
+			return user;
+		}
+
  
 // methode get all users	    
 	@Override
@@ -142,7 +192,9 @@ public class UserServiceImp implements UserService {
 		
 		if(userEntity == null) throw new UsernameNotFoundException(email); 
 		
-		return new User(userEntity.getEmail(), userEntity.getCryptedPassword(), new ArrayList<>());
+	
+		return new User(userEntity.getEmail(), userEntity.getCryptedPassword(), userEntity.getAuthorities());
+		
 	}
 
 

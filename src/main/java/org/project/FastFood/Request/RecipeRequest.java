@@ -16,9 +16,8 @@ public class RecipeRequest {
 	@NotNull(message = "Ce champ ne doit etre null !")
 	@NotBlank(message = "Ce champ ne doit etre null !")
 	private String name;
-	
-	private String servings_numbers;
-	
+	private String pays;
+	private int servings_numbers;
 	private String description;
 	private String totals_views;
 	private boolean featured;
@@ -27,7 +26,7 @@ public class RecipeRequest {
 	private String prep_time;
 	@NotNull(message = "Ce champ ne doit etre null !")
 	private String cook_time;
-	
+	private String tags;
 	private String recipeId;
 	
 	private UserRequest user;
@@ -69,13 +68,15 @@ public class RecipeRequest {
 		this.name = name;
 	}
 	
-	public String getServings_numbers() {
+	
+	public int getServings_numbers() {
 		return servings_numbers;
 	}
-	public void setServings_numbers(String servings_numbers) {
+
+	public void setServings_numbers(int servings_numbers) {
 		this.servings_numbers = servings_numbers;
 	}
-	
+
 	public String getDescription() {
 		return description;
 	}
@@ -176,6 +177,23 @@ public class RecipeRequest {
 	public void setRecipeId(String recipeId) {
 		this.recipeId = recipeId;
 	}
+
+	public String getPays() {
+		return pays;
+	}
+
+	public void setPays(String pays) {
+		this.pays = pays;
+	}
+
+	public String getTags() {
+		return tags;
+	}
+
+	public void setTags(String tags) {
+		this.tags = tags;
+	}
+	
 	
 	
 

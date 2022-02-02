@@ -108,9 +108,12 @@ public class RecipeController {
 	public ResponseEntity<RecipeResponse> UpdateUser(
 			@PathVariable String id_recipe,
 			@RequestBody RecipeRequest recipeRequest) {
-		RecipeDto recipeDto = new RecipeDto();
-		BeanUtils.copyProperties(recipeRequest, recipeDto);
-		RecipeDto updateRecipe = recipeService.updateRecipe(id_recipe, recipeDto);
+	
+		ModelMapper modelMapper = new ModelMapper();
+		modelMapper.getConfiguration()
+        .setMatchingStrategy(MatchingStrategies.STRICT);
+	    RecipeDto recipe = modelMapper.map(recipeRequest, RecipeDto.class);		
+		RecipeDto updateRecipe = recipeService.updateRecipe(id_recipe, recipe);
 		RecipeResponse recipeResponse = new RecipeResponse();
 		BeanUtils.copyProperties(updateRecipe, recipeResponse);
 		return new ResponseEntity<RecipeResponse>(recipeResponse, HttpStatus.ACCEPTED);

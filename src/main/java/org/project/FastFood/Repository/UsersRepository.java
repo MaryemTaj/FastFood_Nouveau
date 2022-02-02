@@ -16,6 +16,7 @@ public interface UsersRepository extends PagingAndSortingRepository<UserEntity, 
 	Page<UserEntity> findAllUsers(Pageable pageableRequest);	
 	UserEntity findByUserId(String userId);
     UserEntity findByEmail(String email);
+    UserEntity findByEmailOrUsername(String email,String username);
 	Optional<UserEntity> findByUsernameOrEmail(String username, String email);
 	@Query("SELECT u FROM UserEntity u  left join u.reactions re left join re.recipe r where r.recipeId=:recipeId and re.emoji=:emoji")	
 	Page<UserEntity> findAllUsersByReactionEmojiAndRecipe(Pageable pageableRequest, String recipeId,String emoji);

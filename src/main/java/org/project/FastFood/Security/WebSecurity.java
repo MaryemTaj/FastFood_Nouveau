@@ -26,15 +26,13 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 		 
 		 
 		  @Override
-			protected void configure(HttpSecurity http) throws Exception {
-				
-
+			protected void configure(HttpSecurity http) throws Exception {				
 				http
 				    .cors().and()
-				    .csrf().disable()
+				    .csrf().disable()				    
 					.authorizeRequests()
-					.antMatchers(SecurityConstants.SIGN_UP_URL)
-					.permitAll()
+					.antMatchers("/login", "/registration","/home").permitAll()
+					.antMatchers("/admin/**").hasRole("ADMIN")
 					.anyRequest().authenticated()
 					.and()
 					.addFilter(getAuthenticationFilter())
@@ -46,12 +44,13 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 			
 			protected AuthenticationFilter getAuthenticationFilter() throws Exception {
 			    final AuthenticationFilter filter = new AuthenticationFilter(authenticationManager());
-			    filter.setFilterProcessesUrl("/users/login");
+			    filter.setFilterProcessesUrl("/login");
 			    return filter;
 			}
 			
 			@Override
 			public void configure(AuthenticationManagerBuilder auth) throws Exception {
+				
 			    auth.userDetailsService( userDetailsService).passwordEncoder(bCryptPasswordEncoder);
 			}
 			

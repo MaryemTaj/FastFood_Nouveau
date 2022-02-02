@@ -26,15 +26,10 @@ public class CategorieEntity implements Serializable {
 	private String image;
 	private String catId;
 	 @OneToMany(mappedBy="categorie")
-	 private List<RecipeEntity> resipes ;
+	 private List<RecipeEntity> recipes;
 	 
 
-	public List<RecipeEntity> getResipes() {
-		return resipes;
-	}
-	public void setResipes(List<RecipeEntity> resipes) {
-		this.resipes = resipes;
-	}
+	
 	
 	public String getName() {
 		return name;
@@ -65,6 +60,12 @@ public class CategorieEntity implements Serializable {
 	}
 	public void setCatId(String catId) {
 		this.catId = catId;
+	}
+	public List<RecipeEntity> getRecipes() {
+		return recipes;
+	}
+	public void setRecipes(List<RecipeEntity> recipes) {
+		this.recipes = recipes;
 	}
 	
 

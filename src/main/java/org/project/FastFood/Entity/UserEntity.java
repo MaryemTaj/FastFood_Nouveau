@@ -1,8 +1,12 @@
 package org.project.FastFood.Entity;
 
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,10 +22,13 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
 @Table(name = "T_users")
-public class UserEntity implements Serializable {
+public class UserEntity implements UserDetails {
 
 	/**
 		 * 
@@ -157,6 +164,43 @@ public class UserEntity implements Serializable {
 
 	public void setImage(byte[] image) {
 		this.image = image;
+	}
+	@Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+		return Arrays.stream(role.split(","))
+        .map(SimpleGrantedAuthority::new)
+        .collect(Collectors.toList());
+       
+    }
+
+	@Override
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
