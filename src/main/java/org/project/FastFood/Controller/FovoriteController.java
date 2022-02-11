@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 import org.project.FastFood.Request.RecipeRequest;
 import org.project.FastFood.Response.FavoriteResponse;
 import org.project.FastFood.Services.FavoriteService;
@@ -45,8 +46,8 @@ public class FovoriteController {
 	@PostMapping("/add")	
 	ResponseEntity<FavoriteResponse> addMyfavorite2(Principal principal,@RequestBody RecipeRequest recipe) throws Exception{
 		ModelMapper modelMapper = new ModelMapper();
-		/*modelMapper.getConfiguration()
-        .setMatchingStrategy(MatchingStrategies.STRICT);*/
+		modelMapper.getConfiguration()
+        .setMatchingStrategy(MatchingStrategies.STRICT);
 		RecipeDto recipeR= modelMapper.map(recipe, RecipeDto.class);
 		FavoriteDto favoriteDto = favoriteService.addRecipeToFavorite2(principal.getName(),recipeR.getRecipeId());
 		

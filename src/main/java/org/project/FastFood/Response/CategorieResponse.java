@@ -36,12 +36,7 @@ public class CategorieResponse {
 	}
 
 	
-	public List<RecipeResponse> getRecipes() {
-		return recipes;
-	}
-	public void setRecipes(List<RecipeResponse> recipes) {
-		this.recipes = recipes;
-	}
+	
 	public String getCatId() {
 		return catId;
 	}

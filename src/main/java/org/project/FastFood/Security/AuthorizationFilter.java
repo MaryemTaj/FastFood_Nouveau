@@ -8,6 +8,7 @@ package org.project.FastFood.Security;
 import java.io.IOException;
 import java.util.ArrayList;
 
+
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -15,14 +16,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 
-public class AuthorizationFilter extends BasicAuthenticationFilter  {
+/*public class AuthorizationFilter extends BasicAuthenticationFilter  {
     
-    public AuthorizationFilter(AuthenticationManager authManager) {
+   /*public AuthorizationFilter(AuthenticationManager authManager) {
         super(authManager);
      } 
     
@@ -47,7 +51,9 @@ public class AuthorizationFilter extends BasicAuthenticationFilter  {
     private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) {
         String token = request.getHeader(SecurityConstants.HEADER_STRING);
         
-        if (token != null) {
+        if (token != null) {	
+        	
+	        
             
             token = token.replace(SecurityConstants.TOKEN_PREFIX, "");
             
@@ -56,8 +62,11 @@ public class AuthorizationFilter extends BasicAuthenticationFilter  {
                     .parseClaimsJws( token )
                     .getBody()
                     .getSubject();
+           
             
             if (user != null) {
+            	
+     
                 return new UsernamePasswordAuthenticationToken(user, null, new ArrayList<>());
             }
             
@@ -65,7 +74,6 @@ public class AuthorizationFilter extends BasicAuthenticationFilter  {
         }
         
         return null;
-    }
+    }*/
     
 
-}

@@ -1,14 +1,17 @@
 package org.project.FastFood.Response;
 
+import org.project.FastFood.Entity.RecipeEntity;
+
 public class IngredientResponse {
 
-
+	private String ingredientId;
 	private String name;
 	private String description;
 	private String image;
 	private int quantity;
 	private String measure_type;
-	
+	private RecipeResponse recipe;
+
 	public IngredientResponse() {
 		super();
 		// TODO Auto-generated constructor stub

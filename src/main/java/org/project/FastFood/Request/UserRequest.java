@@ -4,6 +4,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Set;
 
 public class UserRequest {
 	@NotNull(message = "Ce champ ne doit etre null !")
@@ -27,7 +28,6 @@ public class UserRequest {
 	private String email;
 	
 	private String image;
-	private String role;
 
 	private List<RecipeRequest> recipes;
 
@@ -36,6 +36,8 @@ public class UserRequest {
 	private List<FavoriteRequest> favorites;
 
 	private List<ReactionRequest> reactions;
+	
+	private Set<String> roles ;
 
 	public UserRequest() {
 		super();
@@ -79,6 +81,19 @@ public class UserRequest {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+	
+	
+
+
+	
+
+	public Set<String> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<String> roles) {
+		this.roles = roles;
 	}
 
 	public String getEmail() {
@@ -129,13 +144,7 @@ public class UserRequest {
 		this.reactions = reactions;
 	}
 
-	public String getRole() {
-		return role;
-	}
 
-	public void setRole(String role) {
-		this.role = role;
-	}
 	
 
 }

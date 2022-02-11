@@ -6,7 +6,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 public class CategorieRequest {
-	@NotNull(message = "Ce champ ne doit etre null !")
+	
 	private String catId;
 	@NotBlank(message = "Ce champ ne doit etre null !")
 	@NotNull(message = "Ce champ ne doit etre null !")
@@ -14,7 +14,6 @@ public class CategorieRequest {
 	private String description;
 	private String image;
 
-	private List<RecipeRequest> resipes;
 
 	public String getName() {
 		return name;
@@ -38,14 +37,6 @@ public class CategorieRequest {
 
 	public void setImage(String image) {
 		this.image = image;
-	}
-
-	public List<RecipeRequest> getResipes() {
-		return resipes;
-	}
-
-	public void setResipes(List<RecipeRequest> resipes) {
-		this.resipes = resipes;
 	}
 
 	public String getCatId() {

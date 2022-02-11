@@ -126,8 +126,12 @@ public class RecipeController {
 	public ResponseEntity<RecipeResponse> getUser(@PathVariable String id_recipe) {
 		RecipeDto recipeDto = recipeService.getRecipebyId(id_recipe);
 		RecipeResponse recipeResponse = new RecipeResponse();
-		BeanUtils.copyProperties(recipeDto, recipeResponse);
-		return new ResponseEntity<RecipeResponse>(recipeResponse, HttpStatus.OK);
+		 ModelMapper modelMapper = new ModelMapper();
+		    modelMapper.getConfiguration()
+	        .setMatchingStrategy(MatchingStrategies.STRICT);
+		    RecipeResponse recipeRes = modelMapper.map(recipeDto,RecipeResponse.class);
+		//BeanUtils.copyProperties(recipeDto, recipeResponse);
+		return new ResponseEntity<RecipeResponse>(recipeRes, HttpStatus.OK);
 
 	}
 

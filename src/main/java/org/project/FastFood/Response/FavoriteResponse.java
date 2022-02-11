@@ -5,13 +5,7 @@ public class FavoriteResponse {
 private UserResponse user;
 private RecipeResponse recipe;
 
-public RecipeResponse getRecipe() {
-	return recipe;
-}
 
-public void setRecipe(RecipeResponse recipe) {
-	this.recipe = recipe;
-}
 
 public UserResponse getUser() {
 	return user;

@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.validation.Valid;
 import org.modelmapper.ModelMapper;
+import org.project.FastFood.Request.UserLoginRequest;
 import org.project.FastFood.Request.UserRequest;
+import org.project.FastFood.Response.AuthToken;
 import org.project.FastFood.Response.UserResponse;
+
 import org.project.FastFood.Services.UserService;
 import org.project.FastFood.dto.UserDto;
 import org.springframework.beans.BeanUtils;
@@ -13,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +26,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -54,14 +60,14 @@ public class UserController {
 
 		return new ResponseEntity<List<UserResponse>>(usersResponse, HttpStatus.OK);
 	}
-
+	
+	
+	  
 	//api create user
 	 
 
-	@PostMapping("/registration")
+	@PostMapping("/signup")
 	public ResponseEntity<UserResponse> createUser(@RequestBody @Valid UserRequest userR) throws Exception {
-		// if(userR.getEmail().isEmpty()) throw new
-		// Exception(ErrorMessage.MISSING_REQUIRED_FIELD.getErrorMessage());
 		ModelMapper modelMapper = new ModelMapper();
 		UserDto userDto = modelMapper.map(userR, UserDto.class);
 		UserDto createUser = userService.createUser(userDto);
@@ -70,11 +76,10 @@ public class UserController {
 	}
 
   //api add users and admin by admin	
-	
+	 
 	@PostMapping("admin/addUsers")
 	public ResponseEntity<UserResponse> createAdmin(@RequestBody @Valid UserRequest userR) throws Exception {
-		// if(userR.getEmail().isEmpty()) throw new
-		// Exception(ErrorMessage.MISSING_REQUIRED_FIELD.getErrorMessage());
+		
 		ModelMapper modelMapper = new ModelMapper();
 		UserDto userDto = modelMapper.map(userR, UserDto.class);
 		UserDto createUser = userService.AddUserByAdmin(userDto);

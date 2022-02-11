@@ -1,6 +1,7 @@
 package org.project.FastFood.Response;
 
 import java.util.List;
+import java.util.Set;
 
 import org.project.FastFood.Entity.IngredientEntity;
 import org.project.FastFood.dto.CommentsDto;
@@ -16,7 +17,7 @@ public class UserResponse {
 	private String phone;
 	private String email;
 	private String image;
-	private String role;
+
 
 	private  List<RecipeResponse> recipe;
 
@@ -26,10 +27,20 @@ public class UserResponse {
 	private List<FavoriteResponse> favorites;
 
 	private List<ReactionResponse> reactions;
+	
+	private Set<RoleResponse> roles ;
+	
+	
 
 public UserResponse() {
 	super();
 }
+
+
+
+
+
+
 
 public String getFirstname() {
 	return firstname;
@@ -71,13 +82,20 @@ public void setImage(String image) {
 	this.image = image;
 }
 
-public String getRole() {
-	return role;
+
+public Set<RoleResponse> getRoles() {
+	return roles;
 }
 
-public void setRole(String role) {
-	this.role = role;
+public void setRoles(Set<RoleResponse> roles) {
+	this.roles = roles;
 }
+
+
+
+
+
+
 
 
 

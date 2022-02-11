@@ -111,7 +111,7 @@ public ResponseEntity<List<UserResponse>> getUserReactedOnRecipeByEmoji(
 		@RequestParam(value = "limit", defaultValue = "4") int limit,
 		@RequestParam(value = "search", defaultValue = "") String search,
 		@RequestParam(value = "status", defaultValue = "1") int status,		
-		@RequestBody ReactionResponse reaction){
+		@RequestBody ReactionRequest reaction){
 	
 	    List<UserResponse> usersRes = new ArrayList<>();
 	    List<UserDto> users = reactionService.getUserReactedByEmoji(page, limit, search, status,reaction.getRecipe().getRecipeId(),reaction.getEmoji());

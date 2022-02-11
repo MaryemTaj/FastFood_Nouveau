@@ -31,6 +31,7 @@ public class StepsServiceImp implements StepsService {
 	Utils util;
 	
 // Add steps
+	
 	@Override
 	public StepsDto addSteps(StepsDto steps,String id_recipe) {	
 		
@@ -50,9 +51,9 @@ public class StepsServiceImp implements StepsService {
 
 }
 	
-//Add many steps for a recipe	
 	
 //get steps  by id steps
+	
 	@Override
 	public StepsDto getStepsbyId(String stepsId) {
 		 StepsEntity stepsEntity = stepsRepository.findByStepId(stepsId);
@@ -64,6 +65,7 @@ public class StepsServiceImp implements StepsService {
 	
 	
 //get steps  by recipe
+	
 		@Override
 		public List<StepsDto> getStepsbyRecipe(String recipeId) {
 			   List<StepsDto> stepsDto = new ArrayList<>();
@@ -80,7 +82,8 @@ public class StepsServiceImp implements StepsService {
 				}				  
 			    return stepsDto;
 		}
-//Update steps of a recipe		
+//Update steps of a recipe	
+		
 		@Override
 		public StepsDto updateStep(String id, StepsDto stepsDto) {
 			
@@ -96,7 +99,8 @@ public class StepsServiceImp implements StepsService {
 			}
 		
 		
-//delete user	
+//delete user
+		
 		@Override
 		public void deleteStep(String stepId) {
 						

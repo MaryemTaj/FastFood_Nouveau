@@ -9,21 +9,23 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 public class RecipeResponse {
-
+	private String recipeId;
+	private UserResponse user;	
+	private String name;
+	private String description;
+	private String prep_time;
+	private String cook_time;
 	private String image;
 	private String video;
-	private String name;
+	
 	 @JsonIgnore
 	private Date submit_date;
 	 private int servings_numbers;
-	private String description;
+	
 	private String totals_views;
 	private boolean featured;
 	private String difficulty;
-	private String prep_time;
-	private String cook_time;
-	private UserResponse user;	
-	private String recipeId;
+
 	private Date update_date;
 	private String pays;
 	private String tags;
@@ -194,12 +196,12 @@ public class RecipeResponse {
 		this.tags = tags;
 	}
 
-	public List<FavoriteResponse> getFavorites() {
-		return favorites;
+	public void setCategorie(CategorieResponse categorie) {
+		this.categorie = categorie;
 	}
 
-	public void setFavorites(List<FavoriteResponse> favorites) {
-		this.favorites = favorites;
+	public List<IngredientResponse> getIngredients() {
+		return ingredients;
 	}
 
 	public List<ReactionResponse> getReactions() {
@@ -210,6 +212,14 @@ public class RecipeResponse {
 		this.reactions = reactions;
 	}
 
+	public List<FavoriteResponse> getFavorites() {
+		return favorites;
+	}
+
+	public void setFavorites(List<FavoriteResponse> favorites) {
+		this.favorites = favorites;
+	}
+
 	public List<CommentsResponse> getComments() {
 		return comments;
 	}
@@ -217,6 +227,11 @@ public class RecipeResponse {
 	public void setComments(List<CommentsResponse> comments) {
 		this.comments = comments;
 	}
+	
+	
+	
+
+	
 
 	
 	

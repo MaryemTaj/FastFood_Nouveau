@@ -5,7 +5,9 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
@@ -15,7 +17,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -26,9 +31,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+
 @Entity
 @Table(name = "T_users")
-public class UserEntity implements UserDetails {
+public class UserEntity  {
 
 	/**
 		 * 
@@ -57,7 +63,7 @@ public class UserEntity implements UserDetails {
 	@Column(nullable = false, length = 120, unique = true)
 	private String email;
 
-	private String role;
+
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@CreationTimestamp
@@ -77,7 +83,14 @@ public class UserEntity implements UserDetails {
 
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<ReactionEntity> reactions;
+	
+	 @ManyToMany(fetch = FetchType.LAZY)
+	  @JoinTable(  name = "user_roles", 
+	        joinColumns = @JoinColumn(name = "user_id"), 
+	        inverseJoinColumns = @JoinColumn(name = "role_id"))
+	  private Set<RoleEntity> roles = new HashSet<>();
 
+	 
 	public long getId() {
 		return id;
 	}
@@ -142,14 +155,7 @@ public class UserEntity implements UserDetails {
 		this.email = email;
 	}
 
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
-
+	
 	public Date getDate_created() {
 		return date_created;
 	}
@@ -165,42 +171,23 @@ public class UserEntity implements UserDetails {
 	public void setImage(byte[] image) {
 		this.image = image;
 	}
-	@Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-		return Arrays.stream(role.split(","))
-        .map(SimpleGrantedAuthority::new)
-        .collect(Collectors.toList());
-       
-    }
 
-	@Override
-	public String getPassword() {
-		// TODO Auto-generated method stub
-		return null;
+	public Set<RoleEntity> getRoles() {
+		return roles;
 	}
 
-	@Override
-	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
-		return false;
+	public void setRoles(Set<RoleEntity> roles) {
+		this.roles = roles;
 	}
 
-	@Override
-	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return false;
+	public List<RecipeEntity> getRecipes() {
+		return recipes;
 	}
 
-	@Override
-	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
-		return false;
+	public void setRecipes(List<RecipeEntity> recipes) {
+		this.recipes = recipes;
 	}
+	
 
-	@Override
-	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 }

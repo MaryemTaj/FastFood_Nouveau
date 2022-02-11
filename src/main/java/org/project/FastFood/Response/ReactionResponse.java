@@ -1,8 +1,9 @@
 package org.project.FastFood.Response;
 
 public class ReactionResponse {
-	private String emoji;
 	private String reactionId;
+	private String emoji;
+	
 	private RecipeResponse recipe;
 	private UserResponse user;
 	
@@ -19,12 +20,7 @@ public class ReactionResponse {
 	public void setReactionId(String reactionId) {
 		this.reactionId = reactionId;
 	}
-	public RecipeResponse getRecipe() {
-		return recipe;
-	}
-	public void setRecipe(RecipeResponse recipe) {
-		this.recipe = recipe;
-	}
+	
 	public UserResponse getUser() {
 		return user;
 	}

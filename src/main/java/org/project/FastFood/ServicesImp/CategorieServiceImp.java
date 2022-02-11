@@ -23,7 +23,7 @@ public class CategorieServiceImp implements CategorieService{
 	@Autowired
 	Utils util;
 	
-/*****************************Ajouter Categorie ***************************/
+/*****************************Add Categorie ***************************/
 	@Override
 	public CategorieDto AddCategorie(CategorieDto categorieDto) {
 		CategorieEntity catChercher = categorieRepository.findByName(categorieDto.getName());
@@ -54,7 +54,7 @@ public class CategorieServiceImp implements CategorieService{
 		return categorie;
 	}
 	
-/*****************************Supprimer Categorie ***************************/	
+/*****************************delete Categorie ***************************/	
 	
 @Override
 public void deleteCategorie(String id_cat) {
@@ -63,6 +63,8 @@ public void deleteCategorie(String id_cat) {
 	categorieRepository.delete(catEntity);			
 }
 
+
+/*****************************get all Categorie ***************************/	
 
 @Override
 public List<CategorieDto> getAllCategorie(int page, int limit, String search, int status) {
@@ -93,7 +95,7 @@ public List<CategorieDto> getAllCategorie(int page, int limit, String search, in
 	}
 
 	
-	//methode get user by id	
+/*****************************methode get user by id***************************/	
 @Override
 public CategorieDto getCatById(String catId) {
 

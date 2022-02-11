@@ -37,6 +37,7 @@ Utils util;
 
 
 //add a reaction by user to a recipe 
+
 	@Override
 	public
 	ReactionDto addReaction(ReactionDto reactionDto,String email) {
@@ -65,6 +66,7 @@ Utils util;
 		
 	}
 //get all reaction of user
+	
     @Override
     public 
     List<ReactionDto> getAllReactionByUser(int page, int limit, String search, int status,String email){
@@ -87,7 +89,9 @@ Utils util;
 		}		
 		return reactionDto;
 	}
- //get all reaction of recipe    
+    
+ //get all reaction of recipe  
+    
 	@Override
 	public List<ReactionDto> getReactionByRecipe(int page, int limit, String search, int status, String recipeId) {
 		
@@ -112,7 +116,8 @@ Utils util;
 		return reactionDto;
 	}
 	
-//get User reacted on a recipe by emoji 	
+//get User reacted on a recipe by emoji 
+	
 	@Override
 	public List<UserDto> getUserReactedByEmoji(int page, int limit, String search, int status, String recipeId,String emoji) {
 		
@@ -137,14 +142,16 @@ Utils util;
 			return userDto;
 		}
 
-//count user by emoji
+//count user reacter on a recipe by emoji 
+	
 	@Override
 	public int countUserReactedByEmoji(String recipeId, String emoji) {
 		int countUser = userRepository.countAllUsersByReactionEmojiAndRecipe(recipeId, emoji);
 		return countUser;
 	}
 
-//count reaction	
+//count reaction
+	
 	@Override
 	public int countReactionByRecipe(String recipeId) {
 		int countReaction = reactionRepository.countByRecipe(recipeId);
@@ -152,6 +159,7 @@ Utils util;
 	}
 	
 //update reaction	
+	
 	@Override
 	public ReactionDto updateReactionByUser(ReactionDto reactionDto, String email) {
 	    
@@ -166,7 +174,9 @@ Utils util;
 		return newReactionDto;
 	}
 
-	//delete comment by user
+//delete comment by user
+	
+	
 		@Override
 		public void deleteReactionByUser(String reactionId, String email) throws Exception {
 			

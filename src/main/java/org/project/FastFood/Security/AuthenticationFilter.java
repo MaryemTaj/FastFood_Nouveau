@@ -11,6 +11,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -24,10 +26,13 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+
 public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter{
-	private final AuthenticationManager authenticationManager;
+	
+	/*private final AuthenticationManager authenticationManager;
 
 	public AuthenticationFilter(AuthenticationManager authenticationManager) {
 		this.authenticationManager = authenticationManager;
@@ -55,15 +60,21 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter{
 	                                            FilterChain chain,
 	                                            Authentication auth) throws IOException, ServletException {
 	        
-	        String userName = ((User) auth.getPrincipal()).getUsername(); 	        
-            UserService userService = (UserService)SpringApplicationContext.getBean("userServiceImp");
+	        String userName = ((User) auth.getPrincipal()).getUsername(); 
 	        
+	    
+	       /* List<String> authorities = auth.getAuthorities().stream()
+	                .map(role -> role.getAuthority())
+	                .collect(Collectors.toList());
+	     */
+	        
+           /* UserService userService = (UserService)SpringApplicationContext.getBean("userServiceImp");	        
 	        UserDto userDto = userService.getUser(userName);	        
 	        String token = Jwts.builder()
 	                .setSubject(userName)
 	                .claim("id", userDto.getUserId())
 	                .claim("name", userDto.getFirstname() + " " + userDto.getLastname())
-	                .claim("role", userDto.getRole())
+	                .claim("authorities", userDto.getAuthorities())
 	                .setExpiration(new Date(System.currentTimeMillis() + SecurityConstants.EXPIRATION_TIME))
 	                .signWith(SignatureAlgorithm.HS512, SecurityConstants.TOKEN_SECRET )
 	                .compact();
@@ -72,12 +83,12 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter{
 	       
 	        res.addHeader(SecurityConstants.HEADER_STRING, SecurityConstants.TOKEN_PREFIX + token);
 	        res.addHeader("user_id", userDto.getUserId());
-	        
+	       
 	        res.getWriter().write("{\"token\": \"" + token + "\", "
 	        		        + "\"id\": \""+ userDto.getUserId() + "\", "
-	        				+ "\"role\": \""+ userDto.getRole() + "\","
+	        				+ "\"role\": \""+ userDto.getAuthorities() + "\","
 	        				+ "\"name\": \""+ userDto.getFirstname() + " " + userDto.getLastname()+"\"}");
 
-	    } 
+	    } */
 }
 

@@ -42,6 +42,7 @@ public class RecipeServiceImp implements RecipeService {
 	
 	
 //methode get recipes	 by categorie	
+	
     @Override
 	public List<RecipeDto> getRecipesByCategorie(int page, int limit, String search, int status,String id_cat ){
 					
@@ -70,7 +71,8 @@ public class RecipeServiceImp implements RecipeService {
 			return recipeDto;
 		}
 
-//ajouter recipe    
+//ajouter recipe 
+    
 	@Override
 	public RecipeDto PostRecipe(RecipeDto recipe,String email) {
 		
@@ -96,6 +98,7 @@ public class RecipeServiceImp implements RecipeService {
 	}
 	
 //get recipes of user	
+	
         @Override	
         public List<RecipeDto> getRecipeByUser(int page, int limit, String search, int status, String user_id) {
 		if(page > 0) page = page - 1;
@@ -125,7 +128,8 @@ public class RecipeServiceImp implements RecipeService {
 	
 	
         
-      //update recipe(not working yet) 
+//update recipe
+        
     	@Override
     	public RecipeDto updateRecipe(String id_recipe,RecipeDto recipeDto) { 
     		//ModelMapper modelMapper = new ModelMapper();
@@ -181,13 +185,18 @@ public class RecipeServiceImp implements RecipeService {
 	}*/
 	
 	
-	//methode get recipe by id	
+//methode get recipe by id
+    	
+    	
 		@Override
 		public RecipeDto getRecipebyId(String recipeId){			
 		    RecipeEntity recipeEntity = recipeRepository.findByRecipeId(recipeId);
 		    if(recipeEntity == null) throw new UsernameNotFoundException(recipeId); 
-		    RecipeDto recipeDto = new RecipeDto();
-		    BeanUtils.copyProperties(recipeEntity, recipeDto);
+		    ModelMapper modelMapper = new ModelMapper();
+		    modelMapper.getConfiguration()
+	        .setMatchingStrategy(MatchingStrategies.STRICT);
+		    RecipeDto recipeDto = modelMapper.map(recipeEntity,RecipeDto.class);
+		    //BeanUtils.copyProperties(recipeEntity, recipeDto);
 		    return recipeDto;
 		}
 }

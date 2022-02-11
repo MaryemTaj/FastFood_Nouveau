@@ -1,11 +1,19 @@
 package org.project.FastFood.dto;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 
-public class UserDto implements Serializable {
+public class UserDto implements  Serializable {
 	
 /**
 	 * 
@@ -20,7 +28,7 @@ private String password;
 private String cryptedPassword;
 private String phone;
 private String email;
-private String role;
+
 private Date date_created;
 private byte[] image;
 
@@ -31,6 +39,7 @@ private List<CommentsDto> comments;
 private List<FavoriteDto> favorites;
 
 private List<ReactionDto> reactions;
+private Set<String> roles ;
 
 public long getId() {
 	return id;
@@ -104,13 +113,7 @@ public void setEmail(String email) {
 	this.email = email;
 }
 
-public String getRole() {
-	return role;
-}
 
-public void setRole(String role) {
-	this.role = role;
-}
 
 public Date getDate_created() {
 	return date_created;
@@ -127,6 +130,28 @@ public byte[] getImage() {
 public void setImage(byte[] image) {
 	this.image = image;
 }
+
+public Set<String> getRoles() {
+	return roles;
+}
+
+public void setRoles(Set<String> roles) {
+	this.roles = roles;
+}
+
+public List<RecipeDto> getRecipes() {
+	return recipes;
+}
+
+public void setRecipes(List<RecipeDto> recipes) {
+	this.recipes = recipes;
+}
+
+
+
+
+
+
 
 
 

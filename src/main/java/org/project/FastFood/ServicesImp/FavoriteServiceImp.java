@@ -33,6 +33,7 @@ FavoriteRepository favoriteRepository;
 Utils util;
 
 //add recipe to  favorite
+
 	@Override
 	public FavoriteDto addRecipeToFavorite1(String recipeId,String email) {
 		//if already favorite
@@ -79,7 +80,10 @@ Utils util;
 	    FavoriteDto favorite = modelMapper.map(saveFavorite, FavoriteDto.class);
 	    return favorite;
 	}
-//get favorite recipe of user	
+	
+	
+//get favorite recipe of user
+	
 	@Override
 	public List<FavoriteDto> getFavoriteByUser(int page, int limit, String search, int status,String email) {
 	
@@ -104,6 +108,7 @@ Utils util;
 				}
 	
 //delete favorite	
+	
 	@Override
 	public void deleteFavorite(String favId) throws Exception {
 		

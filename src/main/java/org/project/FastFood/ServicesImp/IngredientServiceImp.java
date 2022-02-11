@@ -28,6 +28,7 @@ public class IngredientServiceImp implements IngredientService {
 	Utils util;
 
 //Add Ingredient
+	
 	@Override
 	public IngredientDto addIngredient(IngredientDto Ingredient, String id_recipe) {
 
@@ -45,6 +46,7 @@ public class IngredientServiceImp implements IngredientService {
 	}
 
 //get Ingredient By Id 
+	
 	@Override
 	public IngredientDto getIngredientbyId(String ingredientId) {
 		IngredientEntity ingredientEntity = ingredientRepository.findByIngredientId(ingredientId);
@@ -55,7 +57,8 @@ public class IngredientServiceImp implements IngredientService {
 		return ingredientDto;
 	}
 
-//Get Ingredient By Recipe	
+//Get Ingredient By Recipe
+	
 	@Override
 	public List<IngredientDto> getIngredientbyRecipe(String recipeId) {
 		List<IngredientDto> ingredientDto = new ArrayList<>();
@@ -74,6 +77,7 @@ public class IngredientServiceImp implements IngredientService {
 	}
 
 //Update ingredient of a recipe	
+	
 	@Override
 	public IngredientDto updateIngredient(String id_ingredient, IngredientDto ingredientDto) {
 		IngredientEntity ingredientEntity = ingredientRepository.findByIngredientId(id_ingredient);

@@ -7,9 +7,13 @@ import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.project.FastFood.Request.CommentsRequest;
+import org.project.FastFood.Request.ReactionRequest;
 import org.project.FastFood.Response.CommentsResponse;
+import org.project.FastFood.Response.ReactionResponse;
 import org.project.FastFood.Services.CommentsService;
 import org.project.FastFood.dto.CommentsDto;
+import org.project.FastFood.dto.ReactionDto;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +21,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -68,6 +73,21 @@ public class CommentsController {
 	
 		return new ResponseEntity<List<CommentsResponse>>(commentsRes,HttpStatus.OK);
 	}
+	
+	//update Comment
+	@PutMapping
+	public ResponseEntity<CommentsResponse> updateComment(@RequestBody CommentsRequest commentR, Principal principal){
+		
+		CommentsDto commentDto = new CommentsDto();
+		BeanUtils.copyProperties(commentR, commentDto);
+		CommentsDto updateComment = commentService.updateComments(commentDto, principal.getName());
+		CommentsResponse commentResponse = new CommentsResponse();
+		BeanUtils.copyProperties(updateComment, commentResponse);
+		
+		return new ResponseEntity<CommentsResponse>(commentResponse, HttpStatus.ACCEPTED);
+	}	
+	
+	
 //delete comments
 	
 	@DeleteMapping("/{commentsId}")
