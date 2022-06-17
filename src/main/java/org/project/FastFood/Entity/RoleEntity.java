@@ -1,7 +1,5 @@
 package org.project.FastFood.Entity;
 
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -23,24 +21,15 @@ public class RoleEntity {
 	  @Enumerated(EnumType.STRING)
 	  @Column(length = 20)
 	  private ERole name;
-    private String roleId;
+ 
 	public ERole getName() {
 		return name;
 	}
 	public void setName(ERole name) {
 		this.name = name;
 	}
-	public String getRoleId() {
-		return roleId;
-	}
-	public void setRoleId(String roleId) {
-		this.roleId = roleId;
-	}
-   
+	
     
    
-    // contructors
-    // getters
-    // setters
-
+  
 }

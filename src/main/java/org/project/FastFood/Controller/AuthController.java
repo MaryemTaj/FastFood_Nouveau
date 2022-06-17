@@ -10,10 +10,13 @@ import javax.validation.Valid;
 import org.project.FastFood.Repository.RoleRepository;
 import org.project.FastFood.Repository.UsersRepository;
 import org.project.FastFood.Request.UserLoginRequest;
+import org.project.FastFood.Response.ErrorMessages;
 import org.project.FastFood.Response.JwtResponse;
 import org.project.FastFood.Security.JwtUtils;
 import org.project.FastFood.ServicesImp.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -61,12 +64,17 @@ public class AuthController {
         .collect(Collectors.toList());
 
     return ResponseEntity.ok(new JwtResponse(jwt, 
-                         userDetails.getId(), 
+                         userDetails.getUserId(), 
                          userDetails.getUsername(), 
                          userDetails.getEmail(), 
                          roles
                          ));
   }
 
-
+  @PostMapping("/signout")
+  public ResponseEntity<?> logoutUser() {
+    ResponseCookie cookie = jwtUtils.getCleanJwtCookie();
+    return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString())
+        .body(new ErrorMessages("You've been signed out!"));
+  }
 }

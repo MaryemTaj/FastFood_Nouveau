@@ -2,8 +2,7 @@ package org.project.FastFood.Response;
 
 public class ReactionResponse {
 	private String reactionId;
-	private String emoji;
-	
+	private String emoji;	
 	private RecipeResponse recipe;
 	private UserResponse user;
 	

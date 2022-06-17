@@ -30,6 +30,9 @@ package org.project.FastFood.Response;
 			this.message = message;
 		}
 		
+		public ErrorMessages(String message) {
+			this.message = message;
+		}
 		
 
 	

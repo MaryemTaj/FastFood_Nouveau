@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.project.FastFood.Entity.CommentsEntity;
-import org.project.FastFood.Entity.ReactionEntity;
 import org.project.FastFood.Entity.RecipeEntity;
 import org.project.FastFood.Entity.UserEntity;
 import org.project.FastFood.Repository.CommentsRepository;
@@ -15,7 +14,6 @@ import org.project.FastFood.Response.ErrorMessage;
 import org.project.FastFood.Services.CommentsService;
 import org.project.FastFood.Util.Utils;
 import org.project.FastFood.dto.CommentsDto;
-import org.project.FastFood.dto.ReactionDto;
 import org.project.FastFood.dto.RecipeDto;
 import org.project.FastFood.dto.UserDto;
 import org.springframework.beans.BeanUtils;

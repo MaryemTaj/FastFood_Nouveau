@@ -6,8 +6,6 @@ public class RoleResponse {
 	  private Long id;
 	  private ERole name;
 
-	    private String roleId;
-
 		public ERole getName() {
 			return name;
 		}
@@ -15,11 +13,6 @@ public class RoleResponse {
 		public void setName(ERole name) {
 			this.name = name;
 		}
-
-		
-	    // contructors
-	    // getters
-	    // setters
 	    
 	    
 

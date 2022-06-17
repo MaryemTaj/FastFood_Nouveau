@@ -83,11 +83,6 @@ public class UserRequest {
 		this.phone = phone;
 	}
 	
-	
-
-
-	
-
 	public Set<String> getRoles() {
 		return roles;
 	}

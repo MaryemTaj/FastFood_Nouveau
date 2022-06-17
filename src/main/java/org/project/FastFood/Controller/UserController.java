@@ -61,8 +61,7 @@ public class UserController {
 		return new ResponseEntity<List<UserResponse>>(usersResponse, HttpStatus.OK);
 	}
 	
-	
-	  
+  
 	//api create user
 	 
 

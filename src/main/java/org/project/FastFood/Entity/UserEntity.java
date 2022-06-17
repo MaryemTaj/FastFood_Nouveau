@@ -1,14 +1,11 @@
 package org.project.FastFood.Entity;
 
 import java.io.Serializable;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
+
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -25,16 +22,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 
 @Entity
 @Table(name = "T_users")
-public class UserEntity  {
+public class UserEntity implements Serializable  {
 
 	/**
 		 * 

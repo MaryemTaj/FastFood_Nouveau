@@ -1,7 +1,5 @@
 package org.project.FastFood.ServicesImp;
 
-
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
@@ -17,7 +15,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class UserDetailsImpl implements UserDetails {
   private static final long serialVersionUID = 1L;
 
-  private Long id;
+  private String userId;
 
   private String username;
 
@@ -25,25 +23,33 @@ public class UserDetailsImpl implements UserDetails {
 
   @JsonIgnore
   private String Password;
-  private String rols;
 
   private Collection<? extends GrantedAuthority> authorities;
 
-  public UserDetailsImpl(Long id, String username, String email,String Password,
+  public UserDetailsImpl(String userId, String username, String email,String Password,
       Collection<? extends GrantedAuthority> authorities ) {
-    this.id = id;
+    this.userId = userId;
     this.username = username;
     this.email = email;
     this.Password = Password;
     this.authorities = authorities;
   }
+  
+  
 
-  public static UserDetailsImpl build(UserEntity user) {
+  public UserDetailsImpl() {
+	super();
+	// TODO Auto-generated constructor stub
+}
+
+
+
+public static UserDetailsImpl build(UserEntity user) {
 		List<GrantedAuthority> authorities = user.getRoles().stream()
 				.map(role -> new SimpleGrantedAuthority(role.getName().name()))
 				.collect(Collectors.toList());
 		return new UserDetailsImpl(
-				user.getId(), 
+				user.getUserId(), 
 				user.getUsername(), 
 				user.getEmail(),
 				user.getCryptedPassword(), 
@@ -55,9 +61,7 @@ public class UserDetailsImpl implements UserDetails {
     return authorities;
   }
 
-  public Long getId() {
-    return id;
-  }
+ 
 
   public String getEmail() {
     return email;
@@ -66,13 +70,21 @@ public class UserDetailsImpl implements UserDetails {
   
   
 
+public String getUserId() {
+	return userId;
+}
+
+public void setUserId(String userId) {
+	this.userId = userId;
+}
+
 public void setPassword(String password) {
 	Password = password;
 }
 
 @Override
   public String getUsername() {
-    return email;
+    return username;
   }
 
   @Override
@@ -102,16 +114,10 @@ public void setPassword(String password) {
     if (o == null || getClass() != o.getClass())
       return false;
     UserDetailsImpl user = (UserDetailsImpl) o;
-    return Objects.equals(id, user.id);
+    return Objects.equals(userId, user.userId);
   }
 
-public String getRols() {
-	return rols;
-}
 
-public void setRols(String rols) {
-	this.rols = rols;
-}
 
 @Override
 public String getPassword() {

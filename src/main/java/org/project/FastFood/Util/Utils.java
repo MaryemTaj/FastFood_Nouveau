@@ -1,10 +1,6 @@
 package org.project.FastFood.Util;
 
 import java.security.SecureRandom;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
@@ -37,12 +33,7 @@ public class Utils {
 	    	
 	    	return date;
 	    }
-	    /*public Date getDatefrom() throws ParseException {
-	    	LocalDate date = LocalDate.now();
-	    	 DateFormat formatter = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-	 	    Date todayWithZeroTime = formatter.parse(formatter.format(date));
-	 	    return todayWithZeroTime;
-	    }*/
+	    
 	   
 
 }
